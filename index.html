@@ -1,867 +1,586 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAYSOR — صابون طبيعي مغربي</title>
+<title>Calm & Bloom — Natural Menstrual Relief</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Tajawal:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #FAF7F0;
-    --ivory: #F3EEE4;
-    --gold: #C9A84C;
-    --gold-light: #E8D49A;
-    --green: #4A7C2F;
-    --green-soft: #EAF3DE;
-    --rose: #C4657A;
-    --rose-soft: #F9EEF0;
-    --ink: #1E1710;
-    --ink-soft: #5C4F3A;
-    --border: rgba(201,168,76,0.25);
+  :root{
+    --paper:#FBEBEF;
+    --paper-2:#FFF6F8;
+    --ink:#4A1229;
+    --ink-soft:#8C5468;
+    --sage:#C96C89;
+    --sage-dark:#9E4468;
+    --clay:#D6336C;
+    --clay-dark:#A3134E;
+    --rose:#F4B8CB;
+    --line: rgba(74,18,41,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+  h1,h2,h3,.display{ font-family:'Fraunces', serif; font-weight:500; letter-spacing:-0.01em; color:var(--ink); }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--clay-dark);
+  }
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{ max-width:1160px; margin:0 auto; padding:0 28px; }
+  section{ position:relative; }
+
+  /* ---------- ripple divider (signature motif reused as separator) ---------- */
+  .ripple{
+    width:100%; height:34px; display:block;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(242,233,218,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px; max-width:1160px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif; font-size:1.35rem; font-weight:600;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{ width:9px; height:9px; border-radius:50%; background:var(--clay); display:inline-block; }
+  nav ul{ list-style:none; display:flex; gap:34px; }
+  nav ul li a{ font-size:0.92rem; text-decoration:none; color:var(--ink-soft); transition:color 0.2s; }
+  nav ul li a:hover{ color:var(--clay-dark); }
+  .nav-right{ display:flex; align-items:center; gap:18px; }
+  .cart-btn{
+    position:relative; background:none; border:1px solid var(--line); border-radius:100px;
+    width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer;
+  }
+  .cart-count{
+    position:absolute; top:-6px; right:-6px; background:var(--clay); color:var(--paper-2);
+    font-family:'Space Mono', monospace; font-size:0.65rem; width:18px; height:18px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .btn{
+    font-family:'Work Sans', sans-serif; font-weight:500; font-size:0.92rem;
+    padding:12px 24px; border-radius:100px; border:1px solid var(--ink); cursor:pointer;
+    text-decoration:none; display:inline-block; transition:transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .btn-solid{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .btn-solid:hover{ background:var(--clay-dark); border-color:var(--clay-dark); transform:translateY(-2px); }
+  .btn-line{ background:transparent; color:var(--ink); }
+  .btn-line:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
+  .menu-toggle{ display:none; background:none; border:none; cursor:pointer; }
 
-  html { scroll-behavior: smooth; }
+  /* ---------- hero ---------- */
+  .hero{ padding:76px 0 40px; }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:50px; align-items:center; }
+  .hero h1{ font-size:3.4rem; line-height:1.06; margin:18px 0 22px; }
+  .hero h1 em{ font-style:italic; color:var(--clay-dark); }
+  .hero p.lead{ font-size:1.1rem; color:var(--ink-soft); max-width:460px; margin-bottom:32px; }
+  .hero-ctas{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-bottom:34px;}
+  .hero-note{ font-size:0.85rem; color:var(--ink-soft); }
 
-  body {
-    font-family: 'Tajawal', sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    overflow-x: hidden;
+  .cycle-wrap{ position:relative; }
+  .cycle-caption{
+    font-family:'Space Mono', monospace; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--ink-soft); text-align:center; margin-top:10px;
   }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 48px;
-    background: rgba(250,247,240,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    letter-spacing: 0.2em;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a {
-    font-size: 14px; font-weight: 300; color: var(--ink-soft);
-    text-decoration: none; letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--gold); }
-  .nav-cart {
-    display: flex; align-items: center; gap: 8px;
-    background: var(--ink); color: var(--cream);
-    padding: 9px 20px; border-radius: 40px;
-    font-size: 13px; font-weight: 400;
-    cursor: pointer; border: none; letter-spacing: 0.05em;
-    transition: background 0.2s;
-  }
-  .nav-cart:hover { background: var(--gold); }
+  #cycle-dot{ animation: orbit 9s linear infinite; transform-origin:200px 200px; }
+  @keyframes orbit{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-    padding-top: 80px;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 80% at 50% 50%, var(--ivory) 0%, var(--cream) 100%);
-  }
-  .mandala-bg {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px; height: 700px;
-    opacity: 0.06;
-    animation: slowSpin 60s linear infinite;
-  }
-  @keyframes slowSpin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+  /* ---------- trust strip ---------- */
+  .trust{ background:var(--ink); color:var(--paper-2); padding:28px 0; }
+  .trust-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; text-align:center; }
+  .trust-grid div{ font-family:'Space Mono', monospace; font-size:0.8rem; letter-spacing:0.03em; }
+  .trust-grid strong{ display:block; font-family:'Fraunces', serif; font-size:1.5rem; font-weight:500; margin-bottom:4px; color:var(--rose); }
 
-  .hero-content { position: relative; z-index: 2; text-align: center; max-width: 680px; padding: 0 24px; }
-  .hero-eyebrow {
-    font-size: 11px; letter-spacing: 0.35em; color: var(--gold);
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 20px; display: block;
-  }
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(64px, 12vw, 110px);
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    color: var(--ink);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .hero-title-ar {
-    font-family: 'Tajawal', sans-serif;
-    font-size: 24px; font-weight: 300;
-    color: var(--ink-soft); letter-spacing: 0.1em;
-    margin-bottom: 32px;
-    direction: rtl;
-  }
-  .hero-divider {
-    display: flex; align-items: center; justify-content: center;
-    gap: 16px; margin-bottom: 28px;
-  }
-  .hero-divider-line { width: 60px; height: 1px; background: var(--gold); opacity: 0.5; }
-  .hero-divider-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-  .hero-desc {
-    font-size: 16px; font-weight: 300; line-height: 1.8;
-    color: var(--ink-soft); margin-bottom: 40px;
-    direction: rtl;
-  }
-  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--ink); color: var(--cream);
-    padding: 14px 36px; border-radius: 40px;
-    font-size: 14px; font-weight: 400; letter-spacing: 0.08em;
-    border: none; cursor: pointer; transition: all 0.25s;
-    font-family: 'Tajawal', sans-serif;
-    text-decoration: none; display: inline-block;
-  }
-  .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
-  .btn-outline {
-    background: transparent; color: var(--ink);
-    padding: 13px 36px; border-radius: 40px;
-    font-size: 14px; font-weight: 400; letter-spacing: 0.08em;
-    border: 1px solid var(--gold); cursor: pointer; transition: all 0.25s;
-    font-family: 'Tajawal', sans-serif;
-    text-decoration: none; display: inline-block;
-  }
-  .btn-outline:hover { background: var(--gold); color: var(--cream); }
+  /* ---------- mission ---------- */
+  .mission{ padding:96px 0; }
+  .mission-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  .mission-card .eyebrow{ margin-bottom:14px; display:block; }
+  .mission-card h2{ font-size:1.9rem; margin-bottom:16px; }
+  .mission-card p{ color:var(--ink-soft); }
+  .mission-divider{ width:1px; background:var(--line); }
 
-  /* STRIP */
-  .strip {
-    background: var(--ink);
-    padding: 14px 0;
-    overflow: hidden;
+  .chip-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:22px; }
+  .chip{
+    font-family:'Space Mono', monospace; font-size:0.72rem; padding:7px 14px; border-radius:100px;
+    border:1px solid var(--line); color:var(--ink-soft);
   }
-  .strip-inner {
-    display: flex; gap: 60px;
-    animation: marquee 18s linear infinite;
-    white-space: nowrap;
-  }
-  .strip-item {
-    font-size: 12px; letter-spacing: 0.3em; color: var(--gold-light);
-    font-family: 'Playfair Display', serif;
-  }
-  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* ABOUT */
-  .section { padding: 100px 48px; }
-  .section-center { text-align: center; }
-  .eyebrow {
-    font-size: 11px; letter-spacing: 0.3em; color: var(--gold);
-    font-family: 'Playfair Display', serif; display: block;
-    margin-bottom: 16px;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 400; color: var(--ink);
-    margin-bottom: 20px; line-height: 1.3;
-  }
-  .section-desc {
-    font-size: 16px; font-weight: 300; line-height: 1.9;
-    color: var(--ink-soft); max-width: 560px; margin: 0 auto;
-    direction: rtl;
-  }
-  .about-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 2px; margin-top: 60px;
-  }
-  .about-card {
-    background: var(--ivory); padding: 48px 36px;
-    text-align: center;
-  }
-  .about-icon { font-size: 32px; margin-bottom: 16px; display: block; }
-  .about-card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; font-weight: 400;
-    color: var(--ink); margin-bottom: 10px;
-  }
-  .about-card-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--ink-soft); direction: rtl; }
+  /* ---------- products ---------- */
+  .products{ padding:20px 0 100px; }
+  .section-head{ text-align:center; max-width:600px; margin:0 auto 56px; }
+  .section-head h2{ font-size:2.4rem; margin:14px 0 12px; }
+  .section-head p{ color:var(--ink-soft); }
 
-  /* PRODUCTS */
-  .products-section { padding: 100px 48px; background: var(--ivory); }
-  .products-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px; margin-top: 60px;
+  .product-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .product-card{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:22px; overflow:hidden;
+    display:flex; flex-direction:column; transition:transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .product-card {
-    background: var(--cream); border-radius: 4px;
-    overflow: hidden; cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid var(--border);
+  .product-card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(43,33,48,0.12); }
+  .product-art{ height:190px; display:flex; align-items:center; justify-content:center; }
+  .product-body{ padding:24px 26px 28px; flex:1; display:flex; flex-direction:column; }
+  .product-tag{ font-family:'Space Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:8px; }
+  .product-body h3{ font-size:1.35rem; margin-bottom:8px; }
+  .product-body p.desc{ color:var(--ink-soft); font-size:0.92rem; margin-bottom:14px; flex:1; }
+  .ingredient-list{ font-family:'Space Mono', monospace; font-size:0.72rem; color:var(--ink-soft); border-top:1px dashed var(--line); border-bottom:1px dashed var(--line); padding:10px 0; margin-bottom:16px; }
+  .price-row{ display:flex; align-items:center; justify-content:space-between; }
+  .price{ font-family:'Fraunces', serif; font-size:1.3rem; }
+  .add-btn{
+    font-family:'Work Sans', sans-serif; font-size:0.85rem; font-weight:500; padding:9px 18px; border-radius:100px;
+    background:var(--sage); color:var(--paper-2); border:none; cursor:pointer; transition:background 0.2s ease;
   }
-  .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(30,23,16,0.1);
-  }
-  .product-img {
-    height: 280px; position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .product-visual {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 72px;
-    transition: transform 0.4s;
-  }
-  .product-card:hover .product-visual { transform: scale(1.05); }
-  .product-badge {
-    position: absolute; top: 16px; right: 16px;
-    background: var(--rose); color: white;
-    font-size: 10px; letter-spacing: 0.1em;
-    padding: 4px 12px; border-radius: 20px;
-  }
-  .product-info { padding: 24px; }
-  .product-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; font-weight: 400;
-    color: var(--ink); margin-bottom: 4px;
-  }
-  .product-name-ar { font-size: 13px; color: var(--gold); margin-bottom: 10px; }
-  .product-desc { font-size: 13px; font-weight: 300; line-height: 1.6; color: var(--ink-soft); direction: rtl; margin-bottom: 16px; }
-  .product-footer { display: flex; align-items: center; justify-content: space-between; }
-  .product-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; color: var(--ink);
-  }
-  .product-price span { font-size: 12px; color: var(--ink-soft); font-family: 'Tajawal', sans-serif; }
-  .add-btn {
-    background: var(--ink); color: var(--cream);
-    border: none; border-radius: 40px;
-    padding: 9px 20px; font-size: 13px;
-    cursor: pointer; transition: background 0.2s;
-    font-family: 'Tajawal', sans-serif;
-  }
-  .add-btn:hover { background: var(--gold); }
+  .add-btn:hover{ background:var(--sage-dark); }
+  .add-btn.added{ background:var(--clay); }
 
-  /* SCENTS */
-  .scents-section { padding: 100px 48px; }
-  .scents-grid {
-    display: flex; flex-wrap: wrap;
-    gap: 12px; justify-content: center;
-    margin-top: 48px;
-  }
-  .scent-pill {
-    background: var(--cream); border: 1px solid var(--border);
-    padding: 12px 24px; border-radius: 40px;
-    font-size: 14px; color: var(--ink-soft);
-    cursor: default; transition: all 0.2s;
-    direction: rtl;
-  }
-  .scent-pill:hover { background: var(--gold); color: var(--cream); border-color: var(--gold); }
-  .scent-pill.active { background: var(--green); color: white; border-color: var(--green); }
+  /* ---------- philosophy ---------- */
+  .philosophy{ background:var(--sage); color:var(--paper-2); padding:96px 0; }
+  .philosophy .eyebrow{ color:var(--rose); }
+  .philosophy h2{ color:var(--paper-2); font-size:2.3rem; max-width:560px; margin:14px 0 50px; }
+  .ingredient-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:26px; }
+  .ingredient-item{ border-top:1px solid rgba(251,246,236,0.28); padding-top:16px; }
+  .ingredient-item h4{ font-family:'Fraunces', serif; font-weight:500; font-size:1.1rem; margin-bottom:8px; }
+  .ingredient-item p{ font-size:0.88rem; color:rgba(251,246,236,0.82); }
 
-  /* GIFT */
-  .gift-section {
-    padding: 100px 48px;
-    background: var(--ink);
-    text-align: center; position: relative; overflow: hidden;
+  /* ---------- how it works ---------- */
+  .how{ padding:100px 0; }
+  .timeline{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; position:relative; margin-top:60px; }
+  .timeline::before{
+    content:""; position:absolute; top:19px; left:8%; right:8%; height:1px; background:var(--line);
   }
-  .gift-section .section-title { color: var(--cream); }
-  .gift-section .section-desc { color: rgba(250,247,240,0.65); }
-  .gift-mandala {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px; height: 500px;
-    opacity: 0.04;
+  .step{ text-align:center; padding:0 20px; position:relative; }
+  .step-dot{
+    width:38px; height:38px; border-radius:50%; background:var(--paper); border:1px solid var(--ink);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 22px; position:relative; z-index:2;
+    font-family:'Space Mono', monospace; font-size:0.8rem;
   }
-  .gift-tags {
-    display: flex; gap: 12px; justify-content: center;
-    flex-wrap: wrap; margin: 36px 0;
-  }
-  .gift-tag {
-    border: 1px solid rgba(201,168,76,0.4);
-    color: var(--gold-light);
-    padding: 8px 20px; border-radius: 40px;
-    font-size: 13px; letter-spacing: 0.05em;
-  }
-  .gift-btn {
-    background: var(--gold); color: var(--ink);
-    padding: 14px 40px; border-radius: 40px;
-    font-size: 14px; font-weight: 500; letter-spacing: 0.08em;
-    border: none; cursor: pointer;
-    font-family: 'Tajawal', sans-serif;
-    transition: transform 0.2s;
-    text-decoration: none; display: inline-block;
-  }
-  .gift-btn:hover { transform: translateY(-2px); }
+  .step h3{ font-size:1.15rem; margin-bottom:10px; }
+  .step p{ color:var(--ink-soft); font-size:0.92rem; max-width:260px; margin:0 auto; }
 
-  /* TESTIMONIALS */
-  .testimonials { padding: 100px 48px; background: var(--ivory); }
-  .testimonials-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 24px; margin-top: 60px;
-  }
-  .testimonial-card { background: var(--cream); padding: 36px; border: 1px solid var(--border); border-radius: 4px; }
-  .testimonial-stars { color: var(--gold); font-size: 14px; margin-bottom: 16px; }
-  .testimonial-text { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--ink-soft); direction: rtl; margin-bottom: 20px; font-style: italic; }
-  .testimonial-name { font-size: 13px; color: var(--ink); font-weight: 500; direction: rtl; }
-  .testimonial-loc { font-size: 12px; color: var(--gold); direction: rtl; }
+  /* ---------- testimonials ---------- */
+  .testimonials{ background:var(--paper-2); padding:96px 0; }
+  .test-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:50px; }
+  .test-card{ border:1px solid var(--line); border-radius:18px; padding:28px; background:var(--paper); }
+  .stars{ color:var(--clay); font-size:0.9rem; margin-bottom:14px; letter-spacing:2px; }
+  .test-card p{ font-style:italic; color:var(--ink-soft); margin-bottom:18px; }
+  .test-name{ font-family:'Space Mono', monospace; font-size:0.78rem; color:var(--ink); }
 
-  /* ORDER FORM */
-  .order-section { padding: 100px 48px; }
-  .order-form {
-    max-width: 560px; margin: 60px auto 0;
-    background: var(--ivory); padding: 48px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-  }
-  .form-group { margin-bottom: 20px; }
-  .form-label { font-size: 12px; letter-spacing: 0.1em; color: var(--ink-soft); display: block; margin-bottom: 8px; direction: rtl; }
-  .form-input {
-    width: 100%; background: var(--cream);
-    border: 1px solid var(--border); border-radius: 4px;
-    padding: 12px 16px; font-size: 14px; font-weight: 300;
-    color: var(--ink); font-family: 'Tajawal', sans-serif;
-    direction: rtl; outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-input:focus { border-color: var(--gold); }
-  .form-select {
-    width: 100%; background: var(--cream);
-    border: 1px solid var(--border); border-radius: 4px;
-    padding: 12px 16px; font-size: 14px; font-weight: 300;
-    color: var(--ink); font-family: 'Tajawal', sans-serif;
-    direction: rtl; outline: none; appearance: none;
-    cursor: pointer;
-  }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-submit {
-    width: 100%; background: var(--ink); color: var(--cream);
-    border: none; border-radius: 40px; padding: 16px;
-    font-size: 15px; font-weight: 400; letter-spacing: 0.08em;
-    cursor: pointer; font-family: 'Tajawal', sans-serif;
-    margin-top: 8px; transition: background 0.2s;
-  }
-  .form-submit:hover { background: var(--gold); }
-  .form-note { font-size: 12px; color: var(--ink-soft); text-align: center; margin-top: 14px; direction: rtl; }
+  /* ---------- faq ---------- */
+  .faq{ padding:96px 0; max-width:760px; margin:0 auto; }
+  .faq-item{ border-bottom:1px solid var(--line); padding:22px 0; }
+  .faq-q{ display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-family:'Fraunces', serif; font-size:1.12rem; }
+  .faq-q .plus{ font-family:'Space Mono', monospace; font-size:1.2rem; transition:transform 0.25s ease; }
+  .faq-item.open .plus{ transform:rotate(45deg); }
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height 0.3s ease; color:var(--ink-soft); font-size:0.94rem; }
+  .faq-item.open .faq-a{ max-height:220px; padding-top:14px; }
 
-  /* FOOTER */
-  footer {
-    background: var(--ink); padding: 60px 48px 32px;
+  /* ---------- newsletter / footer ---------- */
+  .newsletter{ background:var(--ink); color:var(--paper-2); padding:80px 0; text-align:center; }
+  .newsletter h2{ color:var(--paper-2); font-size:2.1rem; margin:14px 0 26px; }
+  .news-form{ display:flex; justify-content:center; gap:10px; max-width:420px; margin:0 auto; flex-wrap:wrap; }
+  .news-form input{
+    flex:1; min-width:200px; padding:13px 18px; border-radius:100px; border:1px solid rgba(251,246,236,0.3);
+    background:transparent; color:var(--paper-2); font-family:'Work Sans', sans-serif;
   }
-  .footer-top {
-    display: grid; grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 48px; padding-bottom: 48px;
-    border-bottom: 1px solid rgba(201,168,76,0.15);
+  .news-form input::placeholder{ color:rgba(251,246,236,0.55); }
+  .news-form button{
+    padding:13px 24px; border-radius:100px; border:none; background:var(--clay); color:var(--paper-2);
+    font-family:'Work Sans', sans-serif; font-weight:500; cursor:pointer;
   }
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px; letter-spacing: 0.2em;
-    color: var(--cream); margin-bottom: 12px;
-  }
-  .footer-logo span { color: var(--gold); }
-  .footer-desc { font-size: 13px; font-weight: 300; line-height: 1.8; color: rgba(250,247,240,0.5); direction: rtl; }
-  .footer-col-title { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 16px; }
-  .footer-links { list-style: none; }
-  .footer-links li { margin-bottom: 10px; }
-  .footer-links a { font-size: 13px; font-weight: 300; color: rgba(250,247,240,0.5); text-decoration: none; transition: color 0.2s; direction: rtl; display: block; }
-  .footer-links a:hover { color: var(--cream); }
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-top: 28px;
-  }
-  .footer-copy { font-size: 12px; color: rgba(250,247,240,0.3); direction: rtl; }
-  .social-links { display: flex; gap: 16px; }
-  .social-link {
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 1px solid rgba(201,168,76,0.3);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--gold); font-size: 14px; text-decoration: none;
-    transition: all 0.2s;
-  }
-  .social-link:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+  .news-msg{ margin-top:16px; font-size:0.85rem; color:var(--rose); min-height:18px; }
 
-  /* CART TOAST */
-  .toast {
-    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
-    background: var(--ink); color: var(--cream);
-    padding: 14px 28px; border-radius: 40px;
-    font-size: 14px; direction: rtl;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
-    z-index: 999;
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
+  footer{ background:var(--paper-2); padding:50px 0 30px; border-top:1px solid var(--line); }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:30px; margin-bottom:40px; }
+  .footer-grid h4{ font-family:'Space Mono', monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px; color:var(--ink-soft); }
+  .footer-grid ul{ list-style:none; }
+  .footer-grid ul li{ margin-bottom:10px; font-size:0.9rem; }
+  .footer-grid ul li a{ text-decoration:none; color:var(--ink-soft); }
+  .footer-grid ul li a:hover{ color:var(--clay-dark); }
+  .disclaimer{ font-size:0.78rem; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:22px; max-width:780px; }
+  .bottom-line{ display:flex; justify-content:space-between; margin-top:22px; font-size:0.8rem; color:var(--ink-soft); flex-wrap:wrap; gap:10px;}
 
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 14px 20px; }
-    .nav-links { display: none; }
-    .section, .products-section, .scents-section, .gift-section,
-    .testimonials, .order-section { padding: 64px 20px; }
-    .about-grid { grid-template-columns: 1fr; gap: 2px; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr; gap: 32px; }
-    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-    .hero-btns { flex-direction: column; align-items: center; }
-    .form-row { grid-template-columns: 1fr; }
+  @media (max-width: 880px){
+    nav ul{ position:fixed; top:73px; left:0; right:0; background:var(--paper); flex-direction:column;
+      padding:26px 28px; gap:20px; border-bottom:1px solid var(--line); transform:translateY(-140%); transition:transform 0.3s ease; }
+    nav ul.open{ transform:translateY(0); }
+    .menu-toggle{ display:block; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero h1{ font-size:2.4rem; }
+    .mission-grid{ grid-template-columns:1fr; }
+    .mission-divider{ display:none; }
+    .trust-grid, .product-grid, .test-grid{ grid-template-columns:1fr; }
+    .ingredient-grid{ grid-template-columns:repeat(2,1fr); }
+    .timeline{ grid-template-columns:1fr; gap:40px; }
+    .timeline::before{ display:none; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
   }
+  :focus-visible{ outline:2px solid var(--clay); outline-offset:3px; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">MAY<span>S</span>OR</a>
-  <ul class="nav-links">
-    <li><a href="#products">المنتجات</a></li>
-    <li><a href="#scents">النكهات</a></li>
-    <li><a href="#gifts">الهدايا</a></li>
-    <li><a href="#order">اطلب الآن</a></li>
-  </ul>
-  <button class="nav-cart" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
-    🛍 اطلب الآن
-  </button>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <svg class="mandala-bg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g transform="translate(200,200)">
-      <circle cx="0" cy="0" r="190" stroke="#C9A84C" stroke-width="0.5"/>
-      <circle cx="0" cy="0" r="150" stroke="#C9A84C" stroke-width="0.5"/>
-      <circle cx="0" cy="0" r="110" stroke="#C9A84C" stroke-width="0.5"/>
-      <circle cx="0" cy="0" r="70" stroke="#C9A84C" stroke-width="0.5"/>
-      <g id="petal">
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(22.5,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(45,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(67.5,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(90,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(112.5,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(135,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(157.5,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(180,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(202.5,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(225,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(247.5,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(270,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(292.5,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(315,0,0)"/>
-        <ellipse cx="0" cy="-130" rx="12" ry="50" fill="#C9A84C" transform="rotate(337.5,0,0)"/>
-      </g>
-    </g>
-  </svg>
-
-  <div class="hero-content">
-    <span class="hero-eyebrow">✦ صابون طبيعي مغربي فاخر ✦</span>
-    <h1 class="hero-title">MAYSOR</h1>
-    <p class="hero-title-ar">ميسور — الحب الميسّر</p>
-    <div class="hero-divider">
-      <div class="hero-divider-line"></div>
-      <div class="hero-divider-dot"></div>
-      <div class="hero-divider-line"></div>
+<header>
+  <div class="nav">
+    <div class="logo"><span class="dot"></span>Calm &amp; Bloom</div>
+    <ul id="navlinks">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="cart-btn" id="cartBtn" aria-label="Cart">
+        🛒<span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a href="#shop" class="btn btn-solid" style="padding:10px 20px; font-size:0.85rem;">Shop now</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
     </div>
-    <p class="hero-desc">
-      صابون يُصنع بيدين وقلب — من خامات المغرب الأصيلة،<br>
-      بنكهات تُوقظ المشاعر وتُسعد من تحب.
-    </p>
-    <div class="hero-btns">
-      <a href="#products" class="btn-primary">اكتشف المنتجات</a>
-      <a href="#gifts" class="btn-outline">علب الهدايا</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Grown & blended in Morocco</span>
+      <h1>Relief that moves <em>with</em> your cycle, not against it.</h1>
+      <p class="lead">Calm &amp; Bloom makes plant-based teas, essential oil rollers, and herbal supplements formulated to ease period pain — no synthetic painkillers, no guesswork.</p>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn btn-solid">Shop the collection</a>
+        <a href="#how" class="btn btn-line">How it works</a>
+      </div>
+      <p class="hero-note">For women 15–45 seeking natural, chemical-free alternatives to pain relief.</p>
+    </div>
+    <div class="cycle-wrap">
+      <svg viewBox="0 0 400 400" width="100%">
+        <circle cx="200" cy="200" r="150" fill="none" stroke="var(--line)" stroke-width="1"/>
+        <circle cx="200" cy="200" r="150" fill="none" stroke="var(--clay)" stroke-width="2" stroke-dasharray="4 10" opacity="0.5"/>
+        <!-- four phase labels -->
+        <g font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="var(--ink-soft)">
+          <text x="200" y="34" text-anchor="middle">MENSTRUAL</text>
+          <text x="366" y="204" text-anchor="middle">FOLLICULAR</text>
+          <text x="200" y="374" text-anchor="middle">OVULATION</text>
+          <text x="34" y="204" text-anchor="middle">LUTEAL</text>
+        </g>
+        <circle cx="200" cy="200" r="86" fill="var(--paper-2)" stroke="var(--line)"/>
+        <text x="200" y="196" text-anchor="middle" font-family="Fraunces, serif" font-size="17" fill="var(--ink)">in rhythm,</text>
+        <text x="200" y="220" text-anchor="middle" font-family="Fraunces, serif" font-size="17" fill="var(--clay-dark)" font-style="italic">not in pain</text>
+        <g id="cycle-dot">
+          <circle cx="200" cy="50" r="7" fill="var(--rose)"/>
+        </g>
+      </svg>
+      <p class="cycle-caption">Formulated for every phase of your cycle</p>
     </div>
   </div>
 </section>
 
-<!-- STRIP -->
-<div class="strip">
-  <div class="strip-inner">
-    <span class="strip-item">✦ صابون طبيعي 100%</span>
-    <span class="strip-item">✦ خامات مغربية أصيلة</span>
-    <span class="strip-item">✦ صلب وسائل</span>
-    <span class="strip-item">✦ هدايا للعشاق</span>
-    <span class="strip-item">✦ شحن لجميع المدن</span>
-    <span class="strip-item">✦ صابون طبيعي 100%</span>
-    <span class="strip-item">✦ خامات مغربية أصيلة</span>
-    <span class="strip-item">✦ صلب وسائل</span>
-    <span class="strip-item">✦ هدايا للعشاق</span>
-    <span class="strip-item">✦ شحن لجميع المدن</span>
+<div class="trust">
+  <div class="wrap trust-grid">
+    <div><strong>100%</strong>plant-based formulations</div>
+    <div><strong>0</strong>synthetic additives or fillers</div>
+    <div><strong>MA → MENA</strong>made in Morocco, shipping regionally</div>
   </div>
 </div>
 
-<!-- ABOUT -->
-<section class="section section-center" id="about">
-  <span class="eyebrow">لماذا MAYSOR</span>
-  <h2 class="section-title">الصابون الطبيعي كما يجب أن يكون</h2>
-  <p class="section-desc">نشتري الصابون الخام ونضيف إليه نكهات طبيعية مختارة بعناية — كل قطعة تُصنع بيدين بأسلوب يجمع بين الأصالة المغربية والروح الشرقية.</p>
-  <div class="about-grid">
-    <div class="about-card">
-      <span class="about-icon">🌿</span>
-      <h3 class="about-card-title">خامات طبيعية</h3>
-      <p class="about-card-desc">نختار أجود الخامات — أرغان مغربي، زيوت طبيعية، ونكهات نباتية خالصة بدون مواد كيميائية ضارة.</p>
+<section class="mission">
+  <div class="wrap mission-grid">
+    <div class="mission-card">
+      <span class="eyebrow">Vision</span>
+      <h2>Safe, natural solutions for period pain.</h2>
+      <p>We believe managing menstrual pain shouldn't mean reaching for whatever's in the medicine cabinet. Calm &amp; Bloom exists to give women a natural, effective option they can trust every month.</p>
+      <div class="chip-row">
+        <span class="chip">Women 15–45</span>
+        <span class="chip">Wellness-focused</span>
+        <span class="chip">Chemical-free</span>
+      </div>
     </div>
-    <div class="about-card">
-      <span class="about-icon">🤲</span>
-      <h3 class="about-card-title">صُنع بالحب</h3>
-      <p class="about-card-desc">كل قطعة صابون تُصنع يدوياً بعناية فائقة — ليست مجرد منتج، بل هدية تحمل مشاعر حقيقية.</p>
-    </div>
-    <div class="about-card">
-      <span class="about-icon">🎁</span>
-      <h3 class="about-card-title">تغليف فاخر</h3>
-      <p class="about-card-desc">نُغلّف كل طلب بأسلوب رومانسي مميز — علب أنيقة وبطاقة رسالة خاصة بكلماتك أنت.</p>
+    <div class="mission-divider"></div>
+    <div class="mission-card">
+      <span class="eyebrow">Mission</span>
+      <h2>Plant-based products, expertly crafted.</h2>
+      <p>Every blend is designed to alleviate menstrual discomfort while supporting long-term wellness — sourced locally, tested carefully, and packaged with the planet in mind.</p>
+      <div class="chip-row">
+        <span class="chip">Locally sourced</span>
+        <span class="chip">Eco-friendly packaging</span>
+        <span class="chip">Fast-acting formulas</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section class="products-section" id="products">
-  <div style="text-align:center">
-    <span class="eyebrow">تشكيلتنا</span>
-    <h2 class="section-title">منتجات MAYSOR</h2>
-    <p class="section-desc">صلب وسائل — كل منتج له قصة وعطر يسكن القلب</p>
-  </div>
-  <div class="products-grid">
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Collection</span>
+      <h2>Three ways to feel better, naturally</h2>
+      <p>Each product is built around one job: easing period pain, gently and quickly.</p>
+    </div>
+    <div class="product-grid">
 
-    <div class="product-card">
-      <div class="product-img" style="background: linear-gradient(135deg, #FAF0F2, #F3E4EA);">
-        <span class="product-badge">الأكثر مبيعاً</span>
-        <div class="product-visual">🌹</div>
-      </div>
-      <div class="product-info">
-        <h3 class="product-name">Rose du Maroc</h3>
-        <p class="product-name-ar">وردة المغرب — صلب</p>
-        <p class="product-desc">صابون صلب على شكل وردة — بعطر ورد الداودية المغربي الخالص مع زيت الأرغان المرطب.</p>
-        <div class="product-footer">
-          <div class="product-price">45 <span>درهم</span></div>
-          <button class="add-btn" onclick="addToCart('وردة المغرب')">أضف للطلب +</button>
+      <div class="product-card">
+        <div class="product-art" style="background:#F6D9E2;">
+          <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="var(--sage-dark)" stroke-width="1.4"><path d="M4 10c0-3 2-5 5-5h9v6c0 4-3 7-7 7H4v-8z"/><path d="M4 14h6a3 3 0 0 0 3-3"/><path d="M9 5c0-2 1-3 3-3"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-tag">Tea Blend</span>
+          <h3>Warm Bloom Tisane</h3>
+          <p class="desc">A calming loose-leaf blend to sip through cramps and low days — steeps in 5 minutes, tastes like a warm hug.</p>
+          <div class="ingredient-list">Ginger · Chamomile · Cramp bark · Raspberry leaf</div>
+          <div class="price-row">
+            <span class="price">180 MAD</span>
+            <button class="add-btn" data-name="Warm Bloom Tisane">Add to cart</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="product-card">
-      <div class="product-img" style="background: linear-gradient(135deg, #EAF3F0, #D8EDE8);">
-        <div class="product-visual">🌿</div>
-      </div>
-      <div class="product-info">
-        <h3 class="product-name">Rayhan Beldi</h3>
-        <p class="product-name-ar">ريحان بلدي — صلب</p>
-        <p class="product-desc">الريحان المغربي الأصيل في قالب صابون فاخر — رائحة تُذكّر بأعراس المغرب وأيامه الجميلة.</p>
-        <div class="product-footer">
-          <div class="product-price">45 <span>درهم</span></div>
-          <button class="add-btn" onclick="addToCart('ريحان بلدي')">أضف للطلب +</button>
+      <div class="product-card">
+        <div class="product-art" style="background:#F1C6D5;">
+          <svg width="70" height="90" viewBox="0 0 24 30" fill="none" stroke="var(--clay-dark)" stroke-width="1.4"><rect x="7" y="8" width="10" height="18" rx="4"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/><circle cx="12" cy="19" r="2"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-tag">Oil Roller</span>
+          <h3>Relief Roll-On</h3>
+          <p class="desc">A pocket-sized essential oil roller for fast, on-the-spot relief — roll onto the lower abdomen and back.</p>
+          <div class="ingredient-list">Clary sage · Lavender · Marjoram · Jojoba base</div>
+          <div class="price-row">
+            <span class="price">120 MAD</span>
+            <button class="add-btn" data-name="Relief Roll-On">Add to cart</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="product-card">
-      <div class="product-img" style="background: linear-gradient(135deg, #F5EAF7, #EDD8F0);">
-        <span class="product-badge">جديد</span>
-        <div class="product-visual">💜</div>
-      </div>
-      <div class="product-info">
-        <h3 class="product-name">Oud & Amber</h3>
-        <p class="product-name-ar">عود وعنبر — صلب</p>
-        <p class="product-desc">مزيج من العود الشرقي والعنبر الدافئ — صابون يُناسب الرجل والمرأة ويدوم عطره طويلاً.</p>
-        <div class="product-footer">
-          <div class="product-price">55 <span>درهم</span></div>
-          <button class="add-btn" onclick="addToCart('عود وعنبر')">أضف للطلب +</button>
+      <div class="product-card">
+        <div class="product-art" style="background:#FBE3EA;">
+          <svg width="80" height="90" viewBox="0 0 24 26" fill="none" stroke="var(--ink)" stroke-width="1.4"><circle cx="8" cy="8" r="4"/><circle cx="16" cy="8" r="4"/><circle cx="12" cy="16" r="4"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="product-tag">Supplement</span>
+          <h3>Daily Balance Capsules</h3>
+          <p class="desc">A monthly herbal supplement to support hormonal balance and reduce cramp intensity over time.</p>
+          <div class="ingredient-list">Evening primrose · Magnesium · Vitex · Turmeric</div>
+          <div class="price-row">
+            <span class="price">240 MAD</span>
+            <button class="add-btn" data-name="Daily Balance Capsules">Add to cart</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="product-card">
-      <div class="product-img" style="background: linear-gradient(135deg, #FAEEDA, #F5E0B8);">
-        <div class="product-visual">🍊</div>
-      </div>
-      <div class="product-info">
-        <h3 class="product-name">Zahr Limon</h3>
-        <p class="product-name-ar">زهر الليمون — سائل</p>
-        <p class="product-desc">صابون سائل فاخر بعطر زهر الليمون المغربي — منعش ومنظف ومرطب في آن واحد.</p>
-        <div class="product-footer">
-          <div class="product-price">60 <span>درهم</span></div>
-          <button class="add-btn" onclick="addToCart('زهر الليمون سائل')">أضف للطلب +</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img" style="background: linear-gradient(135deg, #EAF3DE, #D5EBC0);">
-        <div class="product-visual">🌱</div>
-      </div>
-      <div class="product-info">
-        <h3 class="product-name">Nana Marrakech</h3>
-        <p class="product-name-ar">نعناع مراكش — سائل</p>
-        <p class="product-desc">النعناع المغربي الطازج في صابون سائل — منعش ككأس أتاي ساخن في يوم شتائي بارد.</p>
-        <div class="product-footer">
-          <div class="product-price">60 <span>درهم</span></div>
-          <button class="add-btn" onclick="addToCart('نعناع مراكش سائل')">أضف للطلب +</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img" style="background: linear-gradient(135deg, #F9EEF0, #F5D8DD);">
-        <span class="product-badge">محدود</span>
-        <div class="product-visual">🎁</div>
-      </div>
-      <div class="product-info">
-        <h3 class="product-name">Love Box</h3>
-        <p class="product-name-ar">علبة الحب — هدية</p>
-        <p class="product-desc">صابون صلب + سائل + بطاقة رسالة حب بخط يدك — الهدية المثالية لكل مناسبة رومانسية.</p>
-        <div class="product-footer">
-          <div class="product-price">120 <span>درهم</span></div>
-          <button class="add-btn" onclick="addToCart('علبة الحب')">أضف للطلب +</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SCENTS -->
-<section class="scents-section section-center" id="scents">
-  <span class="eyebrow">عطورنا</span>
-  <h2 class="section-title">اختر نكهتك المفضلة</h2>
-  <p class="section-desc">كل نكهاتنا مستوحاة من طبيعة المغرب وتراثه العطري الأصيل</p>
-  <div class="scents-grid">
-    <div class="scent-pill active">🌹 ورد الداودية</div>
-    <div class="scent-pill">🌿 ريحان مغربي</div>
-    <div class="scent-pill">🍊 زهر البرتقال</div>
-    <div class="scent-pill">🌙 عود وعنبر</div>
-    <div class="scent-pill">🌱 نعناع مراكش</div>
-    <div class="scent-pill">🤍 ياسمين</div>
-    <div class="scent-pill">🟡 زعفران</div>
-    <div class="scent-pill">🍂 صندل دافئ</div>
-    <div class="scent-pill">💛 أرغان وفانيليا</div>
-  </div>
-</section>
-
-<!-- GIFT -->
-<section class="gift-section" id="gifts">
-  <svg class="gift-mandala" viewBox="0 0 400 400">
-    <g transform="translate(200,200)">
-      <circle r="190" stroke="#C9A84C" stroke-width="1" fill="none"/>
-      <circle r="130" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(30)"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(60)"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(90)"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(120)"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(150)"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(180)"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(210)"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(240)"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(270)"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(300)"/>
-      <ellipse cx="0" cy="-160" rx="15" ry="40" fill="#C9A84C" transform="rotate(330)"/>
-    </g>
-  </svg>
-  <div style="position:relative; z-index:2;">
-    <span class="eyebrow" style="color:var(--gold)">✦ علب الهدايا ✦</span>
-    <h2 class="section-title">أهدِ من تحب لحظة لا تُنسى</h2>
-    <p class="section-desc" style="margin:0 auto 32px;">نُحضّر لك علبة هدية بأسلوب رومانسي مميز — صابون فاخر + رسالة بكلماتك + تغليف أنيق يصل جاهزاً للإهداء.</p>
-    <div class="gift-tags">
-      <span class="gift-tag">💍 خطوبة</span>
-      <span class="gift-tag">💒 زفاف</span>
-      <span class="gift-tag">❤️ عيد الحب</span>
-      <span class="gift-tag">🎂 عيد ميلاد</span>
-      <span class="gift-tag">🌸 يوم الأم</span>
-      <span class="gift-tag">✨ هدية عامة</span>
-    </div>
-    <a href="#order" class="gift-btn">اطلب علبة هدية الآن</a>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials section-center" id="reviews">
-  <span class="eyebrow">آراء عملائنا</span>
-  <h2 class="section-title">قالوا عن MAYSOR</h2>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"أهدته لزوجي في ذكرى زواجنا — انبهر من التغليف الجميل والرائحة الرائعة. قال إنها أجمل هدية تلقاها."</p>
-      <div class="testimonial-name">سارة م.</div>
-      <div class="testimonial-loc">الدار البيضاء</div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"صابون وردة المغرب لا مثيل له — الرائحة طبيعية تماماً وتدوم لفترة طويلة. سأطلب دائماً من MAYSOR."</p>
-      <div class="testimonial-name">أمينة ك.</div>
-      <div class="testimonial-loc">مراكش</div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"طلبت علبة الحب هدية لصديقتي — كانت مفاجأة جميلة جداً. الجودة عالية والسعر معقول جداً مقارنة بالمتاجر."</p>
-      <div class="testimonial-name">يوسف ب.</div>
-      <div class="testimonial-loc">الرباط</div>
     </div>
   </div>
 </section>
 
-<!-- ORDER -->
-<section class="order-section section-center" id="order">
-  <span class="eyebrow">اطلب الآن</span>
-  <h2 class="section-title">ابعث طلبك مباشرة</h2>
-  <p class="section-desc">نصلك في جميع مدن المغرب خلال 2-3 أيام عمل</p>
-
-  <div class="order-form">
-    <div class="form-group">
-      <label class="form-label">الاسم الكامل</label>
-      <input type="text" class="form-input" placeholder="اكتب اسمك هنا..." id="fname">
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">رقم الهاتف</label>
-        <input type="tel" class="form-input" placeholder="06 xx xx xx xx" id="fphone">
+<section class="philosophy" id="philosophy">
+  <div class="wrap">
+    <span class="eyebrow">Our philosophy</span>
+    <h2>Fast-acting relief doesn't have to mean synthetic.</h2>
+    <div class="ingredient-grid">
+      <div class="ingredient-item">
+        <h4>Ginger</h4>
+        <p>Reduces inflammation and eases cramping from the inside.</p>
       </div>
-      <div class="form-group">
-        <label class="form-label">المدينة</label>
-        <select class="form-select" id="fcity">
-          <option value="">اختر مدينتك</option>
-          <option>الرباط</option>
-          <option>الدار البيضاء</option>
-          <option>مراكش</option>
-          <option>فاس</option>
-          <option>طنجة</option>
-          <option>أكادير</option>
-          <option>القنيطرة</option>
-          <option>مدينة أخرى</option>
-        </select>
+      <div class="ingredient-item">
+        <h4>Clary Sage</h4>
+        <p>A traditional remedy for hormonal discomfort, used for centuries.</p>
+      </div>
+      <div class="ingredient-item">
+        <h4>Cramp Bark</h4>
+        <p>A natural antispasmodic that helps muscles relax.</p>
+      </div>
+      <div class="ingredient-item">
+        <h4>Magnesium</h4>
+        <p>Supports muscle function and can ease tension-related pain.</p>
       </div>
     </div>
-    <div class="form-group">
-      <label class="form-label">المنتج المطلوب</label>
-      <select class="form-select" id="fproduct">
-        <option value="">اختر المنتج</option>
-        <option>🌹 وردة المغرب — صلب (45 درهم)</option>
-        <option>🌿 ريحان بلدي — صلب (45 درهم)</option>
-        <option>💜 عود وعنبر — صلب (55 درهم)</option>
-        <option>🍊 زهر الليمون — سائل (60 درهم)</option>
-        <option>🌱 نعناع مراكش — سائل (60 درهم)</option>
-        <option>🎁 علبة الحب — هدية (120 درهم)</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">ملاحظات إضافية (اختياري)</label>
-      <input type="text" class="form-input" placeholder="نكهة مخصوصة؟ رسالة في الهدية؟..." id="fnotes">
-    </div>
-    <button class="form-submit" onclick="submitOrder()">أرسل الطلب ✦</button>
-    <p class="form-note">سنتواصل معك عبر واتساب لتأكيد الطلب والدفع عند الاستلام 💚</p>
   </div>
 </section>
 
-<!-- FOOTER -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Relief, delivered on your schedule</h2>
+      <p>Subscribe once, and we handle the rest — a predictable rhythm for a predictable body.</p>
+    </div>
+    <div class="timeline">
+      <div class="step">
+        <div class="step-dot">1</div>
+        <h3>Choose your plan</h3>
+        <p>Pick your products and how often you'd like them — monthly or every two months.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">2</div>
+        <h3>We blend & ship</h3>
+        <p>Freshly blended teas and oils, packed in eco-friendly materials, shipped across Morocco and the MENA region.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">3</div>
+        <h3>Feel the difference</h3>
+        <p>Use daily or as needed — most customers notice calmer cycles within 2–3 months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Reviews</span>
+      <h2>What our customers say</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p>"The Relief Roll-On is now permanently in my bag. It's the first natural product that's actually worked for my cramps."</p>
+        <div class="test-name">— Salma, Rabat</div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p>"I switched to the tea instead of painkillers and honestly don't miss them. The subscription makes it effortless."</p>
+        <div class="test-name">— Yasmine, Casablanca</div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★☆</div>
+        <p>"Took a couple of cycles to notice the capsules working, but my cramps are noticeably shorter now."</p>
+        <div class="test-name">— Imane, Marrakech</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="section-head">
+    <span class="eyebrow">FAQ</span>
+    <h2>Good to know</h2>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span>Are the ingredients safe to use every month?</span><span class="plus">+</span></div>
+    <div class="faq-a"><p>Yes — all our blends use food-grade and cosmetic-grade natural ingredients meant for regular, cyclical use. If you're pregnant, breastfeeding, or on medication, check with your doctor first.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q"><span>Where do you ship?</span><span class="plus">+</span></div>
+    <div class="faq-a"><p>We currently ship across Morocco, with expansion underway to other MENA countries. Retail partners include select pharmacies and health stores.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q"><span>Can I cancel my subscription anytime?</span><span class="plus">+</span></div>
+    <div class="faq-a"><p>Yes, subscriptions are flexible — pause, skip, or cancel a delivery whenever you like, no fees involved.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q"><span>Will this replace my painkillers completely?</span><span class="plus">+</span></div>
+    <div class="faq-a"><p>For many customers, yes — but everyone's pain is different. If your period pain is severe or unusual, please speak with a doctor rather than relying on any single product.</p></div>
+  </div>
+</section>
+
+<div class="newsletter">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--rose);">Stay in the loop</span>
+    <h2>Get cycle-care tips & early access to new blends</h2>
+    <form class="news-form" id="newsForm">
+      <input type="email" required placeholder="you@email.com" id="newsEmail">
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="news-msg" id="newsMsg"></div>
+  </div>
+</div>
+
 <footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-logo">MAY<span>S</span>OR</div>
-      <p class="footer-desc">صابون طبيعي مغربي مصنوع بالحب — من خامات أصيلة بنكهات تُسعد من تحب.</p>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:12px;"><span class="dot"></span>Calm &amp; Bloom</div>
+        <p style="color:var(--ink-soft); font-size:0.9rem; max-width:260px;">Natural menstrual relief, grown and blended in Morocco.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Tea Blends</a></li>
+          <li><a href="#shop">Oil Rollers</a></li>
+          <li><a href="#shop">Supplements</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#philosophy">Our philosophy</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Shipping</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <p class="footer-col-title">روابط سريعة</p>
-      <ul class="footer-links">
-        <li><a href="#products">المنتجات</a></li>
-        <li><a href="#scents">النكهات</a></li>
-        <li><a href="#gifts">علب الهدايا</a></li>
-        <li><a href="#order">اطلب الآن</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="footer-col-title">تواصل معنا</p>
-      <ul class="footer-links">
-        <li><a href="#">واتساب</a></li>
-        <li><a href="#">إنستغرام</a></li>
-        <li><a href="#">تيك توك</a></li>
-        <li><a href="#">البريد الإلكتروني</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">© 2025 MAYSOR — جميع الحقوق محفوظة</p>
-    <div class="social-links">
-      <a href="#" class="social-link">📸</a>
-      <a href="#" class="social-link">🎵</a>
-      <a href="#" class="social-link">💬</a>
+    <p class="disclaimer">These statements have not been evaluated by health authorities. Calm &amp; Bloom products are not intended to diagnose, treat, cure, or prevent any disease. If your menstrual pain is severe, persistent, or unusual, please consult a doctor.</p>
+    <div class="bottom-line">
+      <span>© 2026 Calm & Bloom. All rights reserved.</span>
+      <span>Made with care in Morocco 🌿</span>
     </div>
   </div>
 </footer>
 
-<!-- TOAST -->
-<div class="toast" id="toast">✅ تمت الإضافة لطلبك!</div>
-
 <script>
-  // Smooth scroll for all anchors
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  // mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const navlinks = document.getElementById('navlinks');
+  menuToggle.addEventListener('click', () => navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+  // cart
+  let cartCount = 0;
+  const cartCountEl = document.getElementById('cartCount');
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      cartCount++;
+      cartCountEl.textContent = cartCount;
+      btn.textContent = 'Added ✓';
+      btn.classList.add('added');
+      setTimeout(() => { btn.textContent = 'Add to cart'; btn.classList.remove('added'); }, 1400);
     });
   });
 
-  // Scent pills
-  document.querySelectorAll('.scent-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      document.querySelectorAll('.scent-pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
     });
   });
 
-  // Add to cart toast
-  function addToCart(name) {
-    const toast = document.getElementById('toast');
-    toast.textContent = `✅ "${name}" أُضيف لطلبك!`;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2800);
-    // Also scroll to order
-    setTimeout(() => document.getElementById('order').scrollIntoView({ behavior: 'smooth' }), 500);
-  }
-
-  // Submit order
-  function submitOrder() {
-    const name = document.getElementById('fname').value.trim();
-    const phone = document.getElementById('fphone').value.trim();
-    const city = document.getElementById('fcity').value;
-    const product = document.getElementById('fproduct').value;
-    const notes = document.getElementById('fnotes').value.trim();
-
-    if (!name || !phone || !city || !product) {
-      alert('⚠️ يرجى ملء جميع الحقول المطلوبة');
-      return;
-    }
-
-    const msg = encodeURIComponent(
-      `🌹 طلب جديد — MAYSOR\n\n` +
-      `الاسم: ${name}\n` +
-      `الهاتف: ${phone}\n` +
-      `المدينة: ${city}\n` +
-      `المنتج: ${product}\n` +
-      (notes ? `ملاحظات: ${notes}` : '')
-    );
-
-    window.open(`https://wa.me/212600000000?text=${msg}`, '_blank');
-  }
-
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.product-card, .about-card, .testimonial-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
+  // newsletter
+  document.getElementById('newsForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('newsMsg').textContent = "You're on the list — welcome to the bloom 🌸";
+    document.getElementById('newsEmail').value = '';
   });
 </script>
+
 </body>
 </html>
