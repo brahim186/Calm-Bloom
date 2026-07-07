@@ -51,29 +51,51 @@
   }
 
   /* ---------- header ---------- */
+  .announce{
+    background:var(--ink); color:var(--rose);
+    text-align:center; padding:9px 28px;
+    font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.04em;
+  }
+  .announce b{ color:var(--paper-2); font-weight:600; }
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(242,233,218,0.88);
+    background:rgba(251,235,239,0.9);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
+    transition:box-shadow 0.25s ease, background 0.25s ease;
+  }
+  header.scrolled{
+    background:rgba(251,235,239,0.97);
+    box-shadow:0 6px 24px rgba(74,18,41,0.08);
   }
   .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 28px; max-width:1160px; margin:0 auto;
+    display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:24px;
+    padding:16px 28px; max-width:1160px; margin:0 auto;
   }
   .logo{
     font-family:'Fraunces', serif; font-size:1.35rem; font-weight:600;
-    display:flex; align-items:center; gap:8px;
+    display:flex; align-items:center; gap:8px; text-decoration:none;
   }
   .logo .dot{ width:9px; height:9px; border-radius:50%; background:var(--clay); display:inline-block; }
-  nav ul{ list-style:none; display:flex; gap:34px; }
-  nav ul li a{ font-size:0.92rem; text-decoration:none; color:var(--ink-soft); transition:color 0.2s; }
-  nav ul li a:hover{ color:var(--clay-dark); }
-  .nav-right{ display:flex; align-items:center; gap:18px; }
+  .nav ul{ list-style:none; display:flex; gap:38px; justify-content:center; }
+  .nav ul li a{
+    position:relative; font-size:0.9rem; font-weight:500; text-decoration:none; color:var(--ink-soft);
+    padding:6px 0; transition:color 0.2s;
+  }
+  .nav ul li a::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--clay-dark);
+    transform:scaleX(0); transform-origin:left; transition:transform 0.25s ease;
+  }
+  .nav ul li a:hover{ color:var(--ink); }
+  .nav ul li a:hover::after{ transform:scaleX(1); }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .nav-divider{ width:1px; height:22px; background:var(--line); margin:0 4px; }
   .cart-btn{
     position:relative; background:none; border:1px solid var(--line); border-radius:100px;
     width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:border-color 0.2s ease, transform 0.2s ease;
   }
+  .cart-btn:hover{ border-color:var(--ink); transform:translateY(-1px); }
   .cart-count{
     position:absolute; top:-6px; right:-6px; background:var(--clay); color:var(--paper-2);
     font-family:'Space Mono', monospace; font-size:0.65rem; width:18px; height:18px; border-radius:50%;
@@ -88,7 +110,21 @@
   .btn-solid:hover{ background:var(--clay-dark); border-color:var(--clay-dark); transform:translateY(-2px); }
   .btn-line{ background:transparent; color:var(--ink); }
   .btn-line:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
-  .menu-toggle{ display:none; background:none; border:none; cursor:pointer; }
+
+  .menu-toggle{
+    display:none; background:none; border:1px solid var(--line); border-radius:10px; cursor:pointer;
+    width:40px; height:40px; padding:0; position:relative; flex-shrink:0;
+  }
+  .menu-toggle span{
+    position:absolute; left:10px; right:10px; height:2px; background:var(--ink); border-radius:2px;
+    transition:transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+  }
+  .menu-toggle span:nth-child(1){ top:14px; }
+  .menu-toggle span:nth-child(2){ top:19px; }
+  .menu-toggle span:nth-child(3){ top:24px; }
+  .menu-toggle.active span:nth-child(1){ top:19px; transform:rotate(45deg); }
+  .menu-toggle.active span:nth-child(2){ opacity:0; }
+  .menu-toggle.active span:nth-child(3){ top:19px; transform:rotate(-45deg); }
 
   /* ---------- hero ---------- */
   .hero{ padding:76px 0 40px; }
@@ -127,6 +163,30 @@
     font-family:'Space Mono', monospace; font-size:0.72rem; padding:7px 14px; border-radius:100px;
     border:1px solid var(--line); color:var(--ink-soft);
   }
+
+  /* ---------- cycle tracker ---------- */
+  .cycle-tracker{ background:var(--paper-2); padding:96px 0; }
+  .tracker-card{
+    max-width:680px; margin:50px auto 0; background:var(--paper); border:1px solid var(--line);
+    border-radius:24px; padding:38px 40px;
+  }
+  .tracker-form{ display:grid; grid-template-columns:1fr 1fr auto; gap:18px; align-items:end; }
+  .tracker-form label{
+    display:flex; flex-direction:column; gap:8px; font-family:'Space Mono', monospace; font-size:0.7rem;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  .tracker-form input{
+    font-family:'Work Sans', sans-serif; font-size:0.95rem; padding:12px 14px; border-radius:12px;
+    border:1px solid var(--line); background:var(--paper-2); color:var(--ink);
+  }
+  .tracker-form button{ white-space:nowrap; }
+  .tracker-result{ margin-top:28px; padding-top:24px; border-top:1px dashed var(--line); display:flex; gap:44px; flex-wrap:wrap; }
+  .tracker-result-row strong{ display:block; font-family:'Fraunces', serif; font-size:1.5rem; margin-top:6px; color:var(--clay-dark); }
+  .tracker-alert{
+    margin-top:20px; width:100%; background:var(--clay); color:var(--paper-2); padding:14px 18px;
+    border-radius:14px; font-size:0.9rem;
+  }
+  .tracker-note{ margin-top:16px; font-size:0.8rem; color:var(--ink-soft); }
 
   /* ---------- products ---------- */
   .products{ padding:20px 0 100px; }
@@ -222,10 +282,21 @@
   .bottom-line{ display:flex; justify-content:space-between; margin-top:22px; font-size:0.8rem; color:var(--ink-soft); flex-wrap:wrap; gap:10px;}
 
   @media (max-width: 880px){
-    nav ul{ position:fixed; top:73px; left:0; right:0; background:var(--paper); flex-direction:column;
-      padding:26px 28px; gap:20px; border-bottom:1px solid var(--line); transform:translateY(-140%); transition:transform 0.3s ease; }
-    nav ul.open{ transform:translateY(0); }
-    .menu-toggle{ display:block; }
+    .nav{ grid-template-columns:auto auto; }
+    .nav .btn-solid{ display:none; }
+    .nav ul{
+      position:fixed; top:0; left:0; right:0; bottom:0; z-index:100;
+      background:var(--paper); flex-direction:column; justify-content:center;
+      align-items:center; gap:8px; padding:28px;
+      opacity:0; visibility:hidden; transform:translateY(-12px);
+      transition:opacity 0.28s ease, transform 0.28s ease, visibility 0.28s;
+    }
+    .nav ul.open{ opacity:1; visibility:visible; transform:translateY(0); }
+    .nav ul li{ width:100%; text-align:center; }
+    .nav ul li a{ display:block; font-family:'Fraunces', serif; font-size:1.4rem; padding:14px 0; }
+    .nav ul li a::after{ display:none; }
+    .menu-toggle{ display:block; z-index:101; }
+    body.menu-open{ overflow:hidden; }
     .hero-grid{ grid-template-columns:1fr; }
     .hero h1{ font-size:2.4rem; }
     .mission-grid{ grid-template-columns:1fr; }
@@ -234,6 +305,8 @@
     .ingredient-grid{ grid-template-columns:repeat(2,1fr); }
     .timeline{ grid-template-columns:1fr; gap:40px; }
     .timeline::before{ display:none; }
+    .tracker-form{ grid-template-columns:1fr; }
+    .tracker-card{ padding:30px 24px; }
     .footer-grid{ grid-template-columns:1fr 1fr; }
   }
   :focus-visible{ outline:2px solid var(--clay); outline-offset:3px; }
@@ -241,11 +314,13 @@
 </head>
 <body>
 
+<div class="announce">Free delivery across Morocco on orders over <b>350 MAD</b> · Formulated with women's health experts</div>
 <header>
   <div class="nav">
-    <div class="logo"><span class="dot"></span>Calm &amp; Bloom</div>
+    <a href="#" class="logo"><span class="dot"></span>Calm &amp; Bloom</a>
     <ul id="navlinks">
       <li><a href="#shop">Shop</a></li>
+      <li><a href="#tracker">Track cycle</a></li>
       <li><a href="#philosophy">Philosophy</a></li>
       <li><a href="#how">How it works</a></li>
       <li><a href="#reviews">Reviews</a></li>
@@ -253,10 +328,19 @@
     </ul>
     <div class="nav-right">
       <button class="cart-btn" id="cartBtn" aria-label="Cart">
-        🛒<span class="cart-count" id="cartCount">0</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 5h2l.4 2M6.6 9H19l-1.6 7H8.2M6.6 9l1.6 7M6.6 9L6 6.5"/>
+          <circle cx="9" cy="19" r="1.4" fill="var(--ink)" stroke="none"/>
+          <circle cx="16" cy="19" r="1.4" fill="var(--ink)" stroke="none"/>
+          <path d="M12.5 8.6c-.6-1.1-2.3-1.3-3.1-.3-.8 1-.5 2.3.4 3.1l2.7 2.4 2.7-2.4c.9-.8 1.2-2.1.4-3.1-.8-1-2.5-.8-3.1.3z" fill="var(--clay)" stroke="none"/>
+        </svg>
+        <span class="cart-count" id="cartCount">0</span>
       </button>
+      <span class="nav-divider"></span>
       <a href="#shop" class="btn btn-solid" style="padding:10px 20px; font-size:0.85rem;">Shop now</a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
@@ -304,6 +388,41 @@
   </div>
 </div>
 
+<section class="cycle-tracker" id="tracker">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Free tool</span>
+      <h2>Track your cycle, never get caught off guard</h2>
+      <p>Enter the first day of your last period and we'll estimate your next one — plus give you a heads-up before it arrives.</p>
+    </div>
+    <div class="tracker-card">
+      <form class="tracker-form" id="trackerForm">
+        <label>
+          <span>First day of last period</span>
+          <input type="date" id="lastPeriodDate" required>
+        </label>
+        <label>
+          <span>Average cycle length (days)</span>
+          <input type="number" id="cycleLength" min="20" max="45" value="28" required>
+        </label>
+        <button type="submit" class="btn btn-solid">Calculate</button>
+      </form>
+      <div class="tracker-result" id="trackerResult" hidden>
+        <div class="tracker-result-row">
+          <span class="eyebrow">Next expected period</span>
+          <strong id="nextDateOut"></strong>
+        </div>
+        <div class="tracker-result-row">
+          <span class="eyebrow">Days remaining</span>
+          <strong id="daysLeftOut"></strong>
+        </div>
+        <div class="tracker-alert" id="trackerAlert" hidden></div>
+      </div>
+      <p class="tracker-note">This is an estimate based on average cycle length, not a diagnosis. If you'd like a browser reminder as the date nears, allow notifications when prompted.</p>
+    </div>
+  </div>
+</section>
+
 <section class="mission">
   <div class="wrap mission-grid">
     <div class="mission-card">
@@ -341,7 +460,7 @@
 
       <div class="product-card">
         <div class="product-art" style="background:#F6D9E2;">
-          <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="var(--sage-dark)" stroke-width="1.4"><path d="M4 10c0-3 2-5 5-5h9v6c0 4-3 7-7 7H4v-8z"/><path d="M4 14h6a3 3 0 0 0 3-3"/><path d="M9 5c0-2 1-3 3-3"/></svg>
+          <img src="images/tea-blend.png" alt="Warm Bloom Tisane bottle" style="width:100%; height:100%; object-fit:cover;">
         </div>
         <div class="product-body">
           <span class="product-tag">Tea Blend</span>
@@ -357,7 +476,7 @@
 
       <div class="product-card">
         <div class="product-art" style="background:#F1C6D5;">
-          <svg width="70" height="90" viewBox="0 0 24 30" fill="none" stroke="var(--clay-dark)" stroke-width="1.4"><rect x="7" y="8" width="10" height="18" rx="4"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/><circle cx="12" cy="19" r="2"/></svg>
+          <img src="images/oil-roller.png" alt="Relief Roll-On bottle" style="width:100%; height:100%; object-fit:cover;">
         </div>
         <div class="product-body">
           <span class="product-tag">Oil Roller</span>
@@ -373,7 +492,7 @@
 
       <div class="product-card">
         <div class="product-art" style="background:#FBE3EA;">
-          <svg width="80" height="90" viewBox="0 0 24 26" fill="none" stroke="var(--ink)" stroke-width="1.4"><circle cx="8" cy="8" r="4"/><circle cx="16" cy="8" r="4"/><circle cx="12" cy="16" r="4"/></svg>
+          <img src="images/supplement.png" alt="Daily Balance Capsules bottle" style="width:100%; height:100%; object-fit:cover;">
         </div>
         <div class="product-body">
           <span class="product-tag">Supplement</span>
@@ -540,17 +659,36 @@
     <p class="disclaimer">These statements have not been evaluated by health authorities. Calm &amp; Bloom products are not intended to diagnose, treat, cure, or prevent any disease. If your menstrual pain is severe, persistent, or unusual, please consult a doctor.</p>
     <div class="bottom-line">
       <span>© 2026 Calm & Bloom. All rights reserved.</span>
-      <span>Made with care in Morocco 🌿</span>
+      <span>Made with care in Morocco</span>
     </div>
   </div>
 </footer>
 
 <script>
+  // header scroll shadow
+  const siteHeader = document.querySelector('header');
+  const onScroll = () => siteHeader.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll);
+
   // mobile menu
   const menuToggle = document.getElementById('menuToggle');
   const navlinks = document.getElementById('navlinks');
-  menuToggle.addEventListener('click', () => navlinks.classList.toggle('open'));
-  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+  function closeMenu(){
+    navlinks.classList.remove('open');
+    menuToggle.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  }
+  function toggleMenu(){
+    const isOpen = navlinks.classList.toggle('open');
+    menuToggle.classList.toggle('active', isOpen);
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
+  }
+  menuToggle.addEventListener('click', toggleMenu);
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMenu(); });
 
   // cart
   let cartCount = 0;
@@ -572,6 +710,53 @@
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
       if(!isOpen) item.classList.add('open');
     });
+  });
+
+  // cycle tracker
+  const trackerForm = document.getElementById('trackerForm');
+  trackerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const lastDateVal = document.getElementById('lastPeriodDate').value;
+    const cycleLen = parseInt(document.getElementById('cycleLength').value, 10) || 28;
+    if(!lastDateVal) return;
+
+    const lastDate = new Date(lastDateVal + 'T00:00:00');
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    let nextDate = new Date(lastDate);
+    nextDate.setDate(nextDate.getDate() + cycleLen);
+    while(nextDate < today){
+      nextDate.setDate(nextDate.getDate() + cycleLen);
+    }
+
+    const msPerDay = 1000 * 60 * 60 * 24;
+    const daysLeft = Math.round((nextDate - today) / msPerDay);
+    const dateFmt = nextDate.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+
+    document.getElementById('nextDateOut').textContent = dateFmt;
+    document.getElementById('daysLeftOut').textContent = daysLeft === 0 ? 'Today' : (daysLeft === 1 ? '1 day' : `${daysLeft} days`);
+    document.getElementById('trackerResult').hidden = false;
+
+    const alertBox = document.getElementById('trackerAlert');
+    if(daysLeft <= 3){
+      const daysText = daysLeft === 0 ? 'today' : (daysLeft === 1 ? '1 day' : `${daysLeft} days`);
+      const msg = `🔔 Reminder: your period is expected in ${daysText} — keep your relief kit close by.`;
+      alertBox.textContent = msg;
+      alertBox.hidden = false;
+
+      if('Notification' in window){
+        if(Notification.permission === 'granted'){
+          new Notification('Calm & Bloom', { body: msg });
+        } else if(Notification.permission !== 'denied'){
+          Notification.requestPermission().then(perm => {
+            if(perm === 'granted') new Notification('Calm & Bloom', { body: msg });
+          });
+        }
+      }
+    } else {
+      alertBox.hidden = true;
+    }
   });
 
   // newsletter
