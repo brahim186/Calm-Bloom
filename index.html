@@ -103,7 +103,7 @@
   }
   .cart-wrap{ position:relative; }
   .cart-overlay{
-    position:fixed; inset:0; background:rgba(74,18,41,0.28); z-index:98;
+    position:fixed; inset:0; background:rgba(35,10,20,0.55); backdrop-filter:blur(2px); z-index:40;
     opacity:0; visibility:hidden; transition:opacity 0.25s ease, visibility 0.25s ease;
   }
   .cart-overlay.open{ opacity:1; visibility:visible; }
@@ -236,8 +236,8 @@
     display:flex; flex-direction:column; transition:transform 0.25s ease, box-shadow 0.25s ease;
   }
   .product-card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(43,33,48,0.12); }
-  .product-art{ height:260px; display:flex; align-items:center; justify-content:center; padding:16px; overflow:hidden; }
-  .product-art img{ width:100%; height:100%; object-fit:contain; }
+  .product-art{ width:100%; display:block; overflow:hidden; }
+  .product-art img{ width:100%; height:100%; display:block; object-fit:cover; }
   .product-body{ padding:24px 26px 28px; flex:1; display:flex; flex-direction:column; }
   .product-tag{ font-family:'Space Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:8px; }
   .product-body h3{ font-size:1.35rem; margin-bottom:8px; }
@@ -521,7 +521,7 @@
     <div class="product-grid">
 
       <div class="product-card">
-        <div class="product-art" style="background:#F6D9E2;">
+        <div class="product-art" style="background:#F6D9E2; aspect-ratio: 846 / 1024;">
           <img src="https://i.ibb.co/Y7PZt5Jj/watermarked-img-15939172398152392900.jpg" alt="Warm Bloom Tisane bottle">
         </div>
         <div class="product-body">
@@ -537,7 +537,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-art" style="background:#F1C6D5;">
+        <div class="product-art" style="background:#F1C6D5; aspect-ratio: 878 / 1024;">
           <img src="https://i.ibb.co/twBzpZMn/watermarked-img-4860142567752870730.jpg" alt="Relief Roll-On bottle">
         </div>
         <div class="product-body">
@@ -553,7 +553,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-art" style="background:#FBE3EA;">
+        <div class="product-art" style="background:#FBE3EA; aspect-ratio: 899 / 1024;">
           <img src="https://i.ibb.co/hbcyZ95/watermarked-img-2375900267776275014.jpg" alt="Daily Balance Capsules bottle">
         </div>
         <div class="product-body">
