@@ -136,6 +136,7 @@
   .cart-total-row .eyebrow{ margin:0; }
   .cart-total-row strong{ font-family:'Fraunces', serif; font-size:1.25rem; color:var(--clay-dark); }
   .cart-panel .btn{ width:100%; text-align:center; }
+  .cart-panel .btn[disabled]{ opacity:0.45; cursor:not-allowed; pointer-events:none; }
 
   .btn{
     font-family:'Work Sans', sans-serif; font-weight:500; font-size:0.92rem;
@@ -394,7 +395,7 @@
               <span class="eyebrow">Total</span>
               <strong id="cartTotal">0 MAD</strong>
             </div>
-            <a href="#shop" class="btn btn-solid" id="cartCheckout">Checkout</a>
+            <button type="button" class="btn btn-solid" id="cartCheckout">Checkout</button>
           </div>
         </div>
       </div>
@@ -786,6 +787,7 @@
     const totalPrice = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
     cartCountEl.textContent = totalQty;
     cartTotalEl.textContent = `${totalPrice} MAD`;
+    document.getElementById('cartCheckout').toggleAttribute('disabled', cart.length === 0);
 
     if(cart.length === 0){
       cartItemsEl.innerHTML = '<div class="cart-empty">Your cart is empty — add something to feel better 🌸</div>';
@@ -838,6 +840,13 @@
   cartClose.addEventListener('click', closeCart);
   cartOverlay.addEventListener('click', closeCart);
   document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeCart(); });
+
+  const cartCheckout = document.getElementById('cartCheckout');
+  cartCheckout.addEventListener('click', () => {
+    if(cart.length === 0) return;
+    const payload = encodeURIComponent(JSON.stringify(cart));
+    window.location.href = `checkout.html?items=${payload}`;
+  });
 
   renderCart();
 
