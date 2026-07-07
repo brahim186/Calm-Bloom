@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Calm & Bloom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBEBEF;
+    --paper-2:#FFF6F8;
+    --ink:#4A1229;
+    --ink-soft:#8C5468;
+    --sage:#C96C89;
+    --sage-dark:#9E4468;
+    --clay:#D6336C;
+    --clay-dark:#A3134E;
+    --rose:#F4B8CB;
+    --line: rgba(74,18,41,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--sage-dark); margin-bottom:8px; display:block;
+  }
+  h1, h2, h3{ font-family:'Fraunces', serif; font-weight:500; color:var(--ink); }
+  a{ color:inherit; }
+
+  .top-bar{
+    display:flex; align-items:center; justify-content:space-between; padding:22px 6vw;
+    border-bottom:1px solid var(--line); background:var(--paper-2);
+  }
+  .logo{ font-family:'Fraunces', serif; font-size:1.3rem; font-weight:600; text-decoration:none; color:var(--ink); }
+  .back-link{
+    font-family:'Space Mono', monospace; font-size:0.78rem; letter-spacing:0.04em;
+    text-decoration:none; color:var(--ink-soft); display:flex; align-items:center; gap:6px;
+    transition:color 0.2s ease;
+  }
+  .back-link:hover{ color:var(--ink); }
+
+  .checkout-wrap{
+    max-width:1080px; margin:0 auto; padding:56px 6vw 100px;
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
+  }
+
+  /* ---------- order summary ---------- */
+  .summary-card{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:22px; padding:32px;
+    position:sticky; top:32px;
+  }
+  .summary-items{ display:flex; flex-direction:column; gap:16px; margin:20px 0 22px; }
+  .summary-item{ display:flex; justify-content:space-between; gap:10px; font-size:0.92rem; }
+  .summary-item-name{ font-weight:500; }
+  .summary-item-meta{ font-family:'Space Mono', monospace; font-size:0.72rem; color:var(--ink-soft); margin-top:3px; }
+  .summary-item-price{ font-family:'Fraunces', serif; font-size:1rem; white-space:nowrap; }
+  .summary-row{
+    display:flex; justify-content:space-between; align-items:center; padding-top:14px;
+    border-top:1px dashed var(--line); font-size:0.9rem; color:var(--ink-soft);
+  }
+  .summary-row + .summary-row{ border-top:none; padding-top:8px; }
+  .summary-total{
+    display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+  .summary-total strong{ font-family:'Fraunces', serif; font-size:1.5rem; color:var(--clay-dark); }
+  .empty-cart{ text-align:center; padding:40px 10px; color:var(--ink-soft); }
+  .empty-cart a{
+    display:inline-block; margin-top:16px; padding:12px 26px; border-radius:100px; border:1px solid var(--ink);
+    text-decoration:none; font-size:0.9rem;
+  }
+
+  /* ---------- payment form ---------- */
+  .method-tabs{ display:flex; gap:10px; margin:22px 0 28px; }
+  .method-tab{
+    flex:1; padding:14px 12px; border-radius:14px; border:1px solid var(--line); background:var(--paper-2);
+    cursor:pointer; text-align:center; font-family:'Space Mono', monospace; font-size:0.76rem;
+    letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); transition:all 0.2s ease;
+  }
+  .method-tab.active{ background:var(--ink); border-color:var(--ink); color:var(--paper); }
+
+  .field-group{ display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
+  .field-group label{
+    font-family:'Space Mono', monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .field-group input, .field-group textarea{
+    font-family:'Work Sans', sans-serif; font-size:0.95rem; padding:13px 15px; border-radius:12px;
+    border:1px solid var(--line); background:var(--paper-2); color:var(--ink); resize:none;
+  }
+  .field-group input:focus, .field-group textarea:focus{ outline:none; border-color:var(--sage-dark); }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+  .delivery-note{
+    background:var(--rose); color:var(--ink); padding:13px 16px; border-radius:12px;
+    font-size:0.86rem; margin-bottom:20px; display:flex; justify-content:space-between; gap:10px;
+  }
+  .delivery-note strong{ font-family:'Fraunces', serif; }
+
+  .payment-panel{ display:none; }
+  .payment-panel.active{ display:block; }
+
+  .btn{
+    font-family:'Work Sans', sans-serif; font-weight:500; font-size:0.95rem;
+    padding:15px 24px; border-radius:100px; border:1px solid var(--ink); cursor:pointer;
+    text-decoration:none; display:inline-block; width:100%; text-align:center;
+    transition:transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    background:var(--ink); color:var(--paper);
+  }
+  .btn:hover{ background:var(--clay-dark); border-color:var(--clay-dark); transform:translateY(-2px); }
+
+  .form-note{
+    text-align:center; font-size:0.76rem; color:var(--ink-soft); margin-top:14px; line-height:1.5;
+  }
+
+  .confirmation{
+    text-align:center; padding:50px 20px; display:none;
+  }
+  .confirmation.active{ display:block; }
+  .confirmation .icon{
+    width:64px; height:64px; border-radius:50%; background:var(--clay); color:var(--paper);
+    display:flex; align-items:center; justify-content:center; font-size:1.6rem; margin:0 auto 20px;
+  }
+  .confirmation p{ color:var(--ink-soft); margin-top:10px; }
+  .confirmation a{
+    display:inline-block; margin-top:24px; padding:13px 28px; border-radius:100px; background:var(--ink);
+    color:var(--paper); text-decoration:none; font-size:0.9rem;
+  }
+
+  @media (max-width: 860px){
+    .checkout-wrap{ grid-template-columns:1fr; gap:36px; }
+    .summary-card{ position:static; order:2; }
+    .payment-section{ order:1; }
+    .field-row{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="index.html" class="logo">Calm & Bloom</a>
+  <a href="index.html" class="back-link">← Back to shop</a>
+</div>
+
+<div class="checkout-wrap">
+
+  <!-- order summary -->
+  <div class="summary-card">
+    <span class="eyebrow">Order summary</span>
+    <h2>Your order</h2>
+
+    <div id="summaryContent">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
+  <!-- payment -->
+  <div class="payment-section" id="paymentSection">
+    <span class="eyebrow">Step 2</span>
+    <h2>Payment method</h2>
+
+    <div class="method-tabs">
+      <div class="method-tab active" id="tabCard" data-method="card">Bank Card</div>
+      <div class="method-tab" id="tabCod" data-method="cod">Cash on Delivery</div>
+    </div>
+
+    <form id="checkoutForm">
+
+      <!-- bank card fields -->
+      <div class="payment-panel active" id="panelCard">
+        <div class="field-group">
+          <label for="cardName">Cardholder name</label>
+          <input type="text" id="cardName" placeholder="Full name as shown on card">
+        </div>
+        <div class="field-group">
+          <label for="cardNumber">Card number</label>
+          <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric">
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label for="cardExpiry">Expiry date</label>
+            <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" inputmode="numeric">
+          </div>
+          <div class="field-group">
+            <label for="cardCvv">CVV</label>
+            <input type="text" id="cardCvv" placeholder="123" maxlength="4" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+
+      <!-- cash on delivery fields -->
+      <div class="payment-panel" id="panelCod">
+        <div class="field-group">
+          <label for="codName">Full name</label>
+          <input type="text" id="codName" placeholder="Your full name">
+        </div>
+        <div class="field-group">
+          <label for="codPhone">Phone number</label>
+          <input type="tel" id="codPhone" placeholder="06 12 34 56 78">
+        </div>
+        <div class="field-group">
+          <label for="codAddress">Delivery address</label>
+          <textarea id="codAddress" rows="3" placeholder="Street, city, postal code"></textarea>
+        </div>
+        <div class="delivery-note" id="deliveryNote"></div>
+      </div>
+
+      <button type="submit" class="btn" id="submitBtn">Pay Now</button>
+      <p class="form-note">This is a preview checkout — no real payment is processed and no card details are stored.</p>
+    </form>
+  </div>
+
+  <!-- confirmation state -->
+  <div class="confirmation" id="confirmation">
+    <div class="icon">✓</div>
+    <h2>Thank you!</h2>
+    <p id="confirmationText">Your order has been placed.</p>
+    <a href="index.html">Return to shop</a>
+  </div>
+
+</div>
+
+<script>
+  // read cart data passed from the shop page
+  const params = new URLSearchParams(window.location.search);
+  let cart = [];
+  try{
+    cart = JSON.parse(decodeURIComponent(params.get('items') || '[]'));
+  }catch(e){ cart = []; }
+  if(!Array.isArray(cart)) cart = [];
+
+  const subtotal = cart.reduce((sum, item) => sum + (item.qty * item.price), 0);
+  const FREE_DELIVERY_THRESHOLD = 350;
+  const DELIVERY_FEE = 40;
+  const deliveryFee = subtotal >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
+
+  const summaryContent = document.getElementById('summaryContent');
+  const paymentSection = document.getElementById('paymentSection');
+
+  if(cart.length === 0){
+    summaryContent.innerHTML = `
+      <div class="empty-cart">
+        Your cart is empty.
+        <br><a href="index.html">Go back to the shop →</a>
+      </div>`;
+    paymentSection.style.display = 'none';
+  } else {
+    const itemsHtml = cart.map(item => `
+      <div class="summary-item">
+        <div>
+          <div class="summary-item-name">${item.name}</div>
+          <div class="summary-item-meta">Qty ${item.qty} × ${item.price} MAD</div>
+        </div>
+        <div class="summary-item-price">${item.qty * item.price} MAD</div>
+      </div>
+    `).join('');
+
+    summaryContent.innerHTML = `
+      <div class="summary-items">${itemsHtml}</div>
+      <div class="summary-row"><span>Subtotal</span><span>${subtotal} MAD</span></div>
+      <div class="summary-row" id="deliveryRow"><span>Delivery</span><span>${deliveryFee === 0 ? 'Free' : deliveryFee + ' MAD'}</span></div>
+      <div class="summary-total"><span class="eyebrow" style="margin:0;">Total</span><strong id="grandTotal">${subtotal + deliveryFee} MAD</strong></div>
+    `;
+  }
+
+  // delivery note text (shown inside the COD panel)
+  function deliveryNoteText(){
+    if(subtotal >= FREE_DELIVERY_THRESHOLD){
+      return `<span>Delivery fee</span><strong>Free — your order qualifies for free delivery</strong>`;
+    }
+    return `<span>Delivery fee</span><strong>${DELIVERY_FEE} MAD — free delivery from ${FREE_DELIVERY_THRESHOLD} MAD</strong>`;
+  }
+  const deliveryNoteEl = document.getElementById('deliveryNote');
+  if(deliveryNoteEl) deliveryNoteEl.innerHTML = deliveryNoteText();
+
+  // payment method tabs
+  const tabCard = document.getElementById('tabCard');
+  const tabCod = document.getElementById('tabCod');
+  const panelCard = document.getElementById('panelCard');
+  const panelCod = document.getElementById('panelCod');
+  const submitBtn = document.getElementById('submitBtn');
+
+  function setMethod(method){
+    const isCard = method === 'card';
+    tabCard.classList.toggle('active', isCard);
+    tabCod.classList.toggle('active', !isCard);
+    panelCard.classList.toggle('active', isCard);
+    panelCod.classList.toggle('active', !isCard);
+    submitBtn.textContent = isCard ? 'Pay Now' : 'Confirm Order';
+  }
+  tabCard.addEventListener('click', () => setMethod('card'));
+  tabCod.addEventListener('click', () => setMethod('cod'));
+
+  // card number spacing
+  const cardNumberInput = document.getElementById('cardNumber');
+  if(cardNumberInput){
+    cardNumberInput.addEventListener('input', () => {
+      let digits = cardNumberInput.value.replace(/\D/g, '').slice(0, 16);
+      cardNumberInput.value = digits.replace(/(.{4})/g, '$1 ').trim();
+    });
+  }
+  const cardExpiryInput = document.getElementById('cardExpiry');
+  if(cardExpiryInput){
+    cardExpiryInput.addEventListener('input', () => {
+      let digits = cardExpiryInput.value.replace(/\D/g, '').slice(0, 4);
+      if(digits.length > 2) digits = digits.slice(0,2) + '/' + digits.slice(2);
+      cardExpiryInput.value = digits;
+    });
+  }
+
+  // submit
+  const checkoutForm = document.getElementById('checkoutForm');
+  if(checkoutForm){
+    checkoutForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const isCard = tabCard.classList.contains('active');
+      const confirmationText = document.getElementById('confirmationText');
+
+      if(isCard){
+        confirmationText.textContent = `Your payment of ${subtotal + deliveryFee} MAD was received. A confirmation will be sent to you shortly.`;
+      } else {
+        confirmationText.textContent = `Your order of ${subtotal + deliveryFee} MAD (${deliveryFee === 0 ? 'free delivery' : deliveryFee + ' MAD delivery'}) will be paid on delivery. We'll call you to confirm.`;
+      }
+
+      document.getElementById('paymentSection').style.display = 'none';
+      document.getElementById('confirmation').classList.add('active');
+    });
+  }
+</script>
+
+</body>
+</html>
