@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calm & Bloom — Natural Menstrual Relief</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#FBEBEF;
@@ -29,10 +29,18 @@
     line-height:1.6;
     overflow-x:hidden;
   }
+  [dir="rtl"] body{ font-family:'Tajawal', 'Work Sans', sans-serif; }
+  [dir="rtl"] .eyebrow, [dir="rtl"] .product-tag, [dir="rtl"] .test-name,
+  [dir="rtl"] .ingredient-list, [dir="rtl"] .tracker-form label,
+  [dir="rtl"] .footer-grid h4, [dir="rtl"] .dev-credit, [dir="rtl"] .step-dot,
+  [dir="rtl"] .cycle-caption, [dir="rtl"] .lang-btn{
+    font-family:'Tajawal', sans-serif; letter-spacing:0; text-transform:none;
+  }
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
   }
   h1,h2,h3,.display{ font-family:'Fraunces', serif; font-weight:500; letter-spacing:-0.01em; color:var(--ink); }
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] .display{ font-family:'Tajawal', serif; letter-spacing:0; }
   .eyebrow{
     font-family:'Space Mono', monospace;
     font-size:0.72rem;
@@ -56,6 +64,7 @@
     text-align:center; padding:9px 28px;
     font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.04em;
   }
+  [dir="rtl"] .announce{ font-family:'Tajawal', sans-serif; letter-spacing:0; }
   .announce b{ color:var(--paper-2); font-weight:600; }
   header{
     position:sticky; top:0; z-index:50;
@@ -76,6 +85,7 @@
     font-family:'Fraunces', serif; font-size:1.35rem; font-weight:600;
     display:flex; align-items:center; gap:8px; text-decoration:none;
   }
+  [dir="rtl"] .logo{ font-family:'Tajawal', serif; }
   .logo .dot{ width:9px; height:9px; border-radius:50%; background:var(--clay); display:inline-block; }
   .nav ul{ list-style:none; display:flex; gap:38px; justify-content:center; }
   .nav ul li a{
@@ -88,12 +98,26 @@
   }
   .nav ul li a:hover{ color:var(--ink); }
   .nav ul li a:hover::after{ transform:scaleX(1); }
-  .nav-right{ display:flex; align-items:center; gap:14px; }
-  .nav-divider{ width:1px; height:22px; background:var(--line); margin:0 4px; }
+  .nav-right{ display:flex; align-items:center; gap:12px; flex-wrap:nowrap; }
+  .nav-divider{ width:1px; height:22px; background:var(--line); margin:0 4px; flex-shrink:0; }
+
+  /* ---------- language switcher ---------- */
+  .lang-switch{
+    display:flex; align-items:center; gap:2px; background:var(--paper-2);
+    border:1px solid var(--line); border-radius:100px; padding:3px; flex-shrink:0;
+  }
+  .lang-btn{
+    font-family:'Space Mono', monospace; font-size:0.7rem; letter-spacing:0.03em;
+    padding:6px 10px; border-radius:100px; border:none; background:transparent; color:var(--ink-soft);
+    cursor:pointer; transition:background 0.2s ease, color 0.2s ease;
+  }
+  .lang-btn:hover{ color:var(--ink); }
+  .lang-btn.active{ background:var(--ink); color:var(--paper); }
+
   .cart-btn{
     position:relative; background:none; border:1px solid var(--line); border-radius:100px;
     width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer;
-    transition:border-color 0.2s ease, transform 0.2s ease;
+    transition:border-color 0.2s ease, transform 0.2s ease; flex-shrink:0;
   }
   .cart-btn:hover{ border-color:var(--ink); transform:translateY(-1px); }
   .cart-count{
@@ -101,6 +125,7 @@
     font-family:'Space Mono', monospace; font-size:0.65rem; width:18px; height:18px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
   }
+  [dir="rtl"] .cart-count{ right:auto; left:-6px; }
   .cart-wrap{ position:relative; }
   .cart-overlay{
     position:fixed; inset:0; background:rgba(35,10,20,0.55); backdrop-filter:blur(2px); z-index:40;
@@ -113,6 +138,7 @@
     box-shadow:0 20px 50px rgba(74,18,41,0.18); padding:22px; z-index:99;
     opacity:0; visibility:hidden; transform:translateY(-8px); transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
   }
+  [dir="rtl"] .cart-panel{ right:auto; left:0; }
   .cart-panel.open{ opacity:1; visibility:visible; transform:translateY(0); }
   .cart-panel-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
   .cart-panel-head h3{ font-size:1.1rem; }
@@ -123,6 +149,7 @@
   .cart-item{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
   .cart-item-name{ font-size:0.92rem; font-weight:500; }
   .cart-item-meta{ font-family:'Space Mono', monospace; font-size:0.72rem; color:var(--ink-soft); margin-top:3px; }
+  [dir="rtl"] .cart-item-meta{ font-family:'Tajawal', sans-serif; }
   .cart-item-right{ display:flex; align-items:center; gap:8px; }
   .cart-qty-btn{
     width:22px; height:22px; border-radius:50%; border:1px solid var(--line); background:var(--paper);
@@ -131,10 +158,12 @@
   }
   .cart-qty-btn:hover{ border-color:var(--ink); }
   .cart-item-price{ font-family:'Fraunces', serif; font-size:0.95rem; min-width:64px; text-align:right; }
+  [dir="rtl"] .cart-item-price{ text-align:left; font-family:'Tajawal', serif; }
   .cart-panel-foot{ border-top:1px dashed var(--line); padding-top:16px; }
   .cart-total-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
   .cart-total-row .eyebrow{ margin:0; }
   .cart-total-row strong{ font-family:'Fraunces', serif; font-size:1.25rem; color:var(--clay-dark); }
+  [dir="rtl"] .cart-total-row strong{ font-family:'Tajawal', serif; }
   .cart-panel .btn{ width:100%; text-align:center; }
   .cart-panel .btn[disabled]{ opacity:0.45; cursor:not-allowed; pointer-events:none; }
 
@@ -143,6 +172,7 @@
     padding:12px 24px; border-radius:100px; border:1px solid var(--ink); cursor:pointer;
     text-decoration:none; display:inline-block; transition:transform 0.2s ease, background 0.2s ease, color 0.2s ease;
   }
+  [dir="rtl"] .btn{ font-family:'Tajawal', sans-serif; }
   .btn-solid{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
   .btn-solid:hover{ background:var(--clay-dark); border-color:var(--clay-dark); transform:translateY(-2px); }
   .btn-line{ background:transparent; color:var(--ink); }
@@ -168,6 +198,7 @@
   .hero-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:50px; align-items:center; }
   .hero h1{ font-size:3.4rem; line-height:1.06; margin:18px 0 22px; }
   .hero h1 em{ font-style:italic; color:var(--clay-dark); }
+  [dir="rtl"] .hero h1 em{ font-style:normal; }
   .hero p.lead{ font-size:1.1rem; color:var(--ink-soft); max-width:460px; margin-bottom:32px; }
   .hero-ctas{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-bottom:34px;}
   .hero-note{ font-size:0.85rem; color:var(--ink-soft); }
@@ -185,7 +216,9 @@
   .trust{ background:var(--ink); color:var(--paper-2); padding:28px 0; }
   .trust-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; text-align:center; }
   .trust-grid div{ font-family:'Space Mono', monospace; font-size:0.8rem; letter-spacing:0.03em; }
+  [dir="rtl"] .trust-grid div{ font-family:'Tajawal', sans-serif; letter-spacing:0; }
   .trust-grid strong{ display:block; font-family:'Fraunces', serif; font-size:1.5rem; font-weight:500; margin-bottom:4px; color:var(--rose); }
+  [dir="rtl"] .trust-grid strong{ font-family:'Tajawal', serif; }
 
   /* ---------- mission ---------- */
   .mission{ padding:96px 0; }
@@ -200,6 +233,7 @@
     font-family:'Space Mono', monospace; font-size:0.72rem; padding:7px 14px; border-radius:100px;
     border:1px solid var(--line); color:var(--ink-soft);
   }
+  [dir="rtl"] .chip{ font-family:'Tajawal', sans-serif; }
 
   /* ---------- cycle tracker ---------- */
   .cycle-tracker{ background:var(--paper-2); padding:96px 0; }
@@ -214,11 +248,13 @@
   }
   .tracker-form input{
     font-family:'Work Sans', sans-serif; font-size:0.95rem; padding:12px 14px; border-radius:12px;
-    border:1px solid var(--line); background:var(--paper-2); color:var(--ink);
+    border:1px solid var(--line); background:var(--paper-2); color:var(--ink); width:100%;
   }
+  [dir="rtl"] .tracker-form input{ font-family:'Tajawal', sans-serif; }
   .tracker-form button{ white-space:nowrap; }
   .tracker-result{ margin-top:28px; padding-top:24px; border-top:1px dashed var(--line); display:flex; gap:44px; flex-wrap:wrap; }
   .tracker-result-row strong{ display:block; font-family:'Fraunces', serif; font-size:1.5rem; margin-top:6px; color:var(--clay-dark); }
+  [dir="rtl"] .tracker-result-row strong{ font-family:'Tajawal', serif; }
   .tracker-alert{
     margin-top:20px; width:100%; background:var(--clay); color:var(--paper-2); padding:14px 18px;
     border-radius:14px; font-size:0.9rem;
@@ -244,12 +280,14 @@
   .product-body h3{ font-size:1.35rem; margin-bottom:8px; }
   .product-body p.desc{ color:var(--ink-soft); font-size:0.92rem; margin-bottom:14px; flex:1; }
   .ingredient-list{ font-family:'Space Mono', monospace; font-size:0.72rem; color:var(--ink-soft); border-top:1px dashed var(--line); border-bottom:1px dashed var(--line); padding:10px 0; margin-bottom:16px; }
-  .price-row{ display:flex; align-items:center; justify-content:space-between; }
+  .price-row{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
   .price{ font-family:'Fraunces', serif; font-size:1.3rem; }
+  [dir="rtl"] .price{ font-family:'Tajawal', serif; }
   .add-btn{
     font-family:'Work Sans', sans-serif; font-size:0.85rem; font-weight:500; padding:9px 18px; border-radius:100px;
     background:var(--sage); color:var(--paper-2); border:none; cursor:pointer; transition:background 0.2s ease;
   }
+  [dir="rtl"] .add-btn{ font-family:'Tajawal', sans-serif; }
   .add-btn:hover{ background:var(--sage-dark); }
   .add-btn.added{ background:var(--clay); }
 
@@ -260,6 +298,7 @@
   .ingredient-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:26px; }
   .ingredient-item{ border-top:1px solid rgba(251,246,236,0.28); padding-top:16px; }
   .ingredient-item h4{ font-family:'Fraunces', serif; font-weight:500; font-size:1.1rem; margin-bottom:8px; }
+  [dir="rtl"] .ingredient-item h4{ font-family:'Tajawal', serif; }
   .ingredient-item p{ font-size:0.88rem; color:rgba(251,246,236,0.82); }
 
   /* ---------- how it works ---------- */
@@ -283,16 +322,18 @@
   .test-card{ border:1px solid var(--line); border-radius:18px; padding:28px; background:var(--paper); }
   .stars{ color:var(--clay); font-size:0.9rem; margin-bottom:14px; letter-spacing:2px; }
   .test-card p{ font-style:italic; color:var(--ink-soft); margin-bottom:18px; }
+  [dir="rtl"] .test-card p{ font-style:normal; }
   .test-name{ font-family:'Space Mono', monospace; font-size:0.78rem; color:var(--ink); }
 
   /* ---------- faq ---------- */
   .faq{ padding:96px 0; max-width:760px; margin:0 auto; }
   .faq-item{ border-bottom:1px solid var(--line); padding:22px 0; }
-  .faq-q{ display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-family:'Fraunces', serif; font-size:1.12rem; }
-  .faq-q .plus{ font-family:'Space Mono', monospace; font-size:1.2rem; transition:transform 0.25s ease; }
+  .faq-q{ display:flex; justify-content:space-between; align-items:center; gap:14px; cursor:pointer; font-family:'Fraunces', serif; font-size:1.12rem; }
+  [dir="rtl"] .faq-q{ font-family:'Tajawal', serif; }
+  .faq-q .plus{ font-family:'Space Mono', monospace; font-size:1.2rem; transition:transform 0.25s ease; flex-shrink:0; }
   .faq-item.open .plus{ transform:rotate(45deg); }
   .faq-a{ max-height:0; overflow:hidden; transition:max-height 0.3s ease; color:var(--ink-soft); font-size:0.94rem; }
-  .faq-item.open .faq-a{ max-height:220px; padding-top:14px; }
+  .faq-item.open .faq-a{ max-height:260px; padding-top:14px; }
 
   /* ---------- newsletter / footer ---------- */
   .newsletter{ background:var(--ink); color:var(--paper-2); padding:80px 0; text-align:center; }
@@ -302,11 +343,13 @@
     flex:1; min-width:200px; padding:13px 18px; border-radius:100px; border:1px solid rgba(251,246,236,0.3);
     background:transparent; color:var(--paper-2); font-family:'Work Sans', sans-serif;
   }
+  [dir="rtl"] .news-form input{ font-family:'Tajawal', sans-serif; }
   .news-form input::placeholder{ color:rgba(251,246,236,0.55); }
   .news-form button{
     padding:13px 24px; border-radius:100px; border:none; background:var(--clay); color:var(--paper-2);
     font-family:'Work Sans', sans-serif; font-weight:500; cursor:pointer;
   }
+  [dir="rtl"] .news-form button{ font-family:'Tajawal', sans-serif; }
   .news-msg{ margin-top:16px; font-size:0.85rem; color:var(--rose); min-height:18px; }
 
   footer{ background:var(--paper-2); padding:50px 0 30px; border-top:1px solid var(--line); }
@@ -327,7 +370,7 @@
   .dev-credit a:hover{ opacity:0.7; }
 
   @media (max-width: 880px){
-    .nav{ grid-template-columns:auto auto; }
+    .nav{ grid-template-columns:auto auto; padding:14px 20px; }
     .nav .btn-solid{ display:none; }
     .nav ul{
       position:fixed; top:0; left:0; right:0; bottom:0; z-index:100;
@@ -339,12 +382,15 @@
     .nav ul.open{ opacity:1; visibility:visible; transform:translateY(0); }
     .nav ul li{ width:100%; text-align:center; }
     .nav ul li a{ display:block; font-family:'Fraunces', serif; font-size:1.4rem; padding:14px 0; }
+    [dir="rtl"] .nav ul li a{ font-family:'Tajawal', serif; }
     .nav ul li a::after{ display:none; }
     .menu-toggle{ display:block; z-index:101; }
     body.menu-open{ overflow:hidden; }
+    .nav-right{ gap:8px; }
+    .lang-switch{ order:1; }
     .hero-grid{ grid-template-columns:1fr; }
     .hero h1{ font-size:2.4rem; }
-    .mission-grid{ grid-template-columns:1fr; }
+    .mission-grid{ grid-template-columns:1fr; gap:40px; }
     .mission-divider{ display:none; }
     .trust-grid, .product-grid, .test-grid{ grid-template-columns:1fr; }
     .ingredient-grid{ grid-template-columns:repeat(2,1fr); }
@@ -353,25 +399,50 @@
     .tracker-form{ grid-template-columns:1fr; }
     .tracker-card{ padding:30px 24px; }
     .footer-grid{ grid-template-columns:1fr 1fr; }
+    .wrap{ padding:0 20px; }
+  }
+  @media (max-width: 520px){
+    .announce{ font-size:0.66rem; padding:9px 16px; line-height:1.5; }
+    .logo{ font-size:1.15rem; }
+    .cart-panel{ width:300px; }
+    .hero{ padding:50px 0 28px; }
+    .hero h1{ font-size:1.9rem; }
+    .hero p.lead{ font-size:1rem; }
+    .section-head h2{ font-size:1.7rem; }
+    .mission-card h2{ font-size:1.5rem; }
+    .philosophy h2{ font-size:1.7rem; }
+    .ingredient-grid{ grid-template-columns:1fr 1fr; gap:18px; }
+    .newsletter h2{ font-size:1.5rem; }
+    .news-form{ flex-direction:column; align-items:stretch; }
+    .footer-grid{ grid-template-columns:1fr; gap:26px; }
+    .bottom-line{ flex-direction:column; gap:6px; }
+    .tracker-card{ padding:24px 18px; }
+    .lang-btn{ padding:6px 8px; font-size:0.66rem; }
+    .cart-btn{ width:36px; height:36px; }
   }
   :focus-visible{ outline:2px solid var(--clay); outline-offset:3px; }
 </style>
 </head>
 <body>
 
-<div class="announce">Free delivery across Morocco on orders over <b>350 MAD</b> · Formulated with women's health experts</div>
+<div class="announce" data-i18n-html="announce">Free delivery across Morocco on orders over <b>350 MAD</b> · Formulated with women's health experts</div>
 <header>
   <div class="nav">
     <a href="#" class="logo"><span class="dot"></span>Calm &amp; Bloom</a>
     <ul id="navlinks">
-      <li><a href="#shop">Shop</a></li>
-      <li><a href="#tracker">Track cycle</a></li>
-      <li><a href="#philosophy">Philosophy</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#shop" data-i18n="nav.shop">Shop</a></li>
+      <li><a href="#tracker" data-i18n="nav.tracker">Track cycle</a></li>
+      <li><a href="#philosophy" data-i18n="nav.philosophy">Philosophy</a></li>
+      <li><a href="#how" data-i18n="nav.how">How it works</a></li>
+      <li><a href="#reviews" data-i18n="nav.reviews">Reviews</a></li>
+      <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
     </ul>
     <div class="nav-right">
+      <div class="lang-switch" id="langSwitch" role="group" aria-label="Language / Langue / اللغة">
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="fr">FR</button>
+        <button type="button" class="lang-btn" data-lang="ar">AR</button>
+      </div>
       <div class="cart-wrap">
         <button class="cart-btn" id="cartBtn" aria-label="Cart" aria-haspopup="true" aria-expanded="false">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -384,23 +455,23 @@
         </button>
         <div class="cart-panel" id="cartPanel">
           <div class="cart-panel-head">
-            <h3>Your cart</h3>
+            <h3 data-i18n="cart.title">Your cart</h3>
             <button class="cart-close" id="cartClose" aria-label="Close cart">×</button>
           </div>
           <div class="cart-items" id="cartItems">
-            <div class="cart-empty">Your cart is empty — add something to feel better 🌸</div>
+            <div class="cart-empty" data-i18n="cart.empty">Your cart is empty — add something to feel better 🌸</div>
           </div>
           <div class="cart-panel-foot">
             <div class="cart-total-row">
-              <span class="eyebrow">Total</span>
+              <span class="eyebrow" data-i18n="cart.total">Total</span>
               <strong id="cartTotal">0 MAD</strong>
             </div>
-            <button type="button" class="btn btn-solid" id="cartCheckout">Checkout</button>
+            <button type="button" class="btn btn-solid" id="cartCheckout" data-i18n="cart.checkout">Checkout</button>
           </div>
         </div>
       </div>
       <span class="nav-divider"></span>
-      <a href="#shop" class="btn btn-solid" style="padding:10px 20px; font-size:0.85rem;">Shop now</a>
+      <a href="#shop" class="btn btn-solid" style="padding:10px 20px; font-size:0.85rem;" data-i18n="nav.shopNow">Shop now</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -411,14 +482,14 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Grown & blended in Morocco</span>
-      <h1>Relief that moves <em>with</em> your cycle, not against it.</h1>
-      <p class="lead">Calm &amp; Bloom makes plant-based teas, essential oil rollers, and herbal supplements formulated to ease period pain — no synthetic painkillers, no guesswork.</p>
+      <span class="eyebrow" data-i18n="hero.eyebrow">Grown & blended in Morocco</span>
+      <h1 data-i18n-html="hero.title">Relief that moves <em>with</em> your cycle, not against it.</h1>
+      <p class="lead" data-i18n="hero.lead">Calm &amp; Bloom makes plant-based teas, essential oil rollers, and herbal supplements formulated to ease period pain — no synthetic painkillers, no guesswork.</p>
       <div class="hero-ctas">
-        <a href="#shop" class="btn btn-solid">Shop the collection</a>
-        <a href="#how" class="btn btn-line">How it works</a>
+        <a href="#shop" class="btn btn-solid" data-i18n="hero.ctaShop">Shop the collection</a>
+        <a href="#how" class="btn btn-line" data-i18n="hero.ctaHow">How it works</a>
       </div>
-      <p class="hero-note">For women 15–45 seeking natural, chemical-free alternatives to pain relief.</p>
+      <p class="hero-note" data-i18n="hero.note">For women 15–45 seeking natural, chemical-free alternatives to pain relief.</p>
     </div>
     <div class="cycle-wrap">
       <svg viewBox="0 0 400 400" width="100%">
@@ -426,62 +497,62 @@
         <circle cx="200" cy="200" r="150" fill="none" stroke="var(--clay)" stroke-width="2" stroke-dasharray="4 10" opacity="0.5"/>
         <!-- four phase labels -->
         <g font-family="Space Mono, monospace" font-size="10" letter-spacing="1" fill="var(--ink-soft)">
-          <text x="200" y="34" text-anchor="middle">MENSTRUAL</text>
-          <text x="366" y="204" text-anchor="middle">FOLLICULAR</text>
-          <text x="200" y="374" text-anchor="middle">OVULATION</text>
-          <text x="34" y="204" text-anchor="middle">LUTEAL</text>
+          <text x="200" y="34" text-anchor="middle" id="phaseMenstrual">MENSTRUAL</text>
+          <text x="366" y="204" text-anchor="middle" id="phaseFollicular">FOLLICULAR</text>
+          <text x="200" y="374" text-anchor="middle" id="phaseOvulation">OVULATION</text>
+          <text x="34" y="204" text-anchor="middle" id="phaseLuteal">LUTEAL</text>
         </g>
         <circle cx="200" cy="200" r="86" fill="var(--paper-2)" stroke="var(--line)"/>
-        <text x="200" y="196" text-anchor="middle" font-family="Fraunces, serif" font-size="17" fill="var(--ink)">in rhythm,</text>
-        <text x="200" y="220" text-anchor="middle" font-family="Fraunces, serif" font-size="17" fill="var(--clay-dark)" font-style="italic">not in pain</text>
+        <text x="200" y="196" text-anchor="middle" font-family="Fraunces, serif" font-size="17" fill="var(--ink)" id="cycleTextA">in rhythm,</text>
+        <text x="200" y="220" text-anchor="middle" font-family="Fraunces, serif" font-size="17" fill="var(--clay-dark)" font-style="italic" id="cycleTextB">not in pain</text>
         <g id="cycle-dot">
           <circle cx="200" cy="50" r="7" fill="var(--rose)"/>
         </g>
       </svg>
-      <p class="cycle-caption">Formulated for every phase of your cycle</p>
+      <p class="cycle-caption" data-i18n="cycle.caption">Formulated for every phase of your cycle</p>
     </div>
   </div>
 </section>
 
 <div class="trust">
   <div class="wrap trust-grid">
-    <div><strong>100%</strong>plant-based formulations</div>
-    <div><strong>0</strong>synthetic additives or fillers</div>
-    <div><strong>MA → MENA</strong>made in Morocco, shipping regionally</div>
+    <div><strong>100%</strong><span data-i18n="trust.1">plant-based formulations</span></div>
+    <div><strong>0</strong><span data-i18n="trust.2">synthetic additives or fillers</span></div>
+    <div><strong>MA → MENA</strong><span data-i18n="trust.3">made in Morocco, shipping regionally</span></div>
   </div>
 </div>
 
 <section class="cycle-tracker" id="tracker">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Free tool</span>
-      <h2>Track your cycle, never get caught off guard</h2>
-      <p>Enter the first day of your last period and we'll estimate your next one — plus give you a heads-up before it arrives.</p>
+      <span class="eyebrow" data-i18n="tracker.eyebrow">Free tool</span>
+      <h2 data-i18n="tracker.title">Track your cycle, never get caught off guard</h2>
+      <p data-i18n="tracker.desc">Enter the first day of your last period and we'll estimate your next one — plus give you a heads-up before it arrives.</p>
     </div>
     <div class="tracker-card">
       <form class="tracker-form" id="trackerForm">
         <label>
-          <span>First day of last period</span>
+          <span data-i18n="tracker.labelDate">First day of last period</span>
           <input type="date" id="lastPeriodDate" required>
         </label>
         <label>
-          <span>Average cycle length (days)</span>
+          <span data-i18n="tracker.labelCycle">Average cycle length (days)</span>
           <input type="number" id="cycleLength" min="20" max="45" value="28" required>
         </label>
-        <button type="submit" class="btn btn-solid">Calculate</button>
+        <button type="submit" class="btn btn-solid" data-i18n="tracker.calc">Calculate</button>
       </form>
       <div class="tracker-result" id="trackerResult" hidden>
         <div class="tracker-result-row">
-          <span class="eyebrow">Next expected period</span>
+          <span class="eyebrow" data-i18n="tracker.nextLabel">Next expected period</span>
           <strong id="nextDateOut"></strong>
         </div>
         <div class="tracker-result-row">
-          <span class="eyebrow">Days remaining</span>
+          <span class="eyebrow" data-i18n="tracker.daysLabel">Days remaining</span>
           <strong id="daysLeftOut"></strong>
         </div>
         <div class="tracker-alert" id="trackerAlert" hidden></div>
       </div>
-      <p class="tracker-note">This is an estimate based on average cycle length, not a diagnosis. If you'd like a browser reminder as the date nears, allow notifications when prompted.</p>
+      <p class="tracker-note" data-i18n="tracker.note">This is an estimate based on average cycle length, not a diagnosis. If you'd like a browser reminder as the date nears, allow notifications when prompted.</p>
     </div>
   </div>
 </section>
@@ -489,24 +560,24 @@
 <section class="mission">
   <div class="wrap mission-grid">
     <div class="mission-card">
-      <span class="eyebrow">Vision</span>
-      <h2>Safe, natural solutions for period pain.</h2>
-      <p>We believe managing menstrual pain shouldn't mean reaching for whatever's in the medicine cabinet. Calm &amp; Bloom exists to give women a natural, effective option they can trust every month.</p>
+      <span class="eyebrow" data-i18n="mission.visionEyebrow">Vision</span>
+      <h2 data-i18n="mission.visionTitle">Safe, natural solutions for period pain.</h2>
+      <p data-i18n="mission.visionText">We believe managing menstrual pain shouldn't mean reaching for whatever's in the medicine cabinet. Calm &amp; Bloom exists to give women a natural, effective option they can trust every month.</p>
       <div class="chip-row">
-        <span class="chip">Women 15–45</span>
-        <span class="chip">Wellness-focused</span>
-        <span class="chip">Chemical-free</span>
+        <span class="chip" data-i18n="mission.chip1">Women 15–45</span>
+        <span class="chip" data-i18n="mission.chip2">Wellness-focused</span>
+        <span class="chip" data-i18n="mission.chip3">Chemical-free</span>
       </div>
     </div>
     <div class="mission-divider"></div>
     <div class="mission-card">
-      <span class="eyebrow">Mission</span>
-      <h2>Plant-based products, expertly crafted.</h2>
-      <p>Every blend is designed to alleviate menstrual discomfort while supporting long-term wellness — sourced locally, tested carefully, and packaged with the planet in mind.</p>
+      <span class="eyebrow" data-i18n="mission.missionEyebrow">Mission</span>
+      <h2 data-i18n="mission.missionTitle">Plant-based products, expertly crafted.</h2>
+      <p data-i18n="mission.missionText">Every blend is designed to alleviate menstrual discomfort while supporting long-term wellness — sourced locally, tested carefully, and packaged with the planet in mind.</p>
       <div class="chip-row">
-        <span class="chip">Locally sourced</span>
-        <span class="chip">Eco-friendly packaging</span>
-        <span class="chip">Fast-acting formulas</span>
+        <span class="chip" data-i18n="mission.chip4">Locally sourced</span>
+        <span class="chip" data-i18n="mission.chip5">Eco-friendly packaging</span>
+        <span class="chip" data-i18n="mission.chip6">Fast-acting formulas</span>
       </div>
     </div>
   </div>
@@ -515,9 +586,9 @@
 <section class="products" id="shop">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">The Collection</span>
-      <h2>Three ways to feel better, naturally</h2>
-      <p>Each product is built around one job: easing period pain, gently and quickly.</p>
+      <span class="eyebrow" data-i18n="products.eyebrow">The Collection</span>
+      <h2 data-i18n="products.title">Three ways to feel better, naturally</h2>
+      <p data-i18n="products.desc">Each product is built around one job: easing period pain, gently and quickly.</p>
     </div>
     <div class="product-grid">
 
@@ -526,13 +597,13 @@
           <img src="https://i.ibb.co/Y7PZt5Jj/watermarked-img-15939172398152392900.jpg" alt="Warm Bloom Tisane bottle">
         </div>
         <div class="product-body">
-          <span class="product-tag">Tea Blend</span>
-          <h3>Warm Bloom Tisane</h3>
-          <p class="desc">A calming loose-leaf blend to sip through cramps and low days — steeps in 5 minutes, tastes like a warm hug.</p>
-          <div class="ingredient-list">Ginger · Chamomile · Cramp bark · Raspberry leaf</div>
+          <span class="product-tag" data-i18n="product.tisane.tag">Tea Blend</span>
+          <h3 data-i18n="product.tisane.name">Warm Bloom Tisane</h3>
+          <p class="desc" data-i18n="product.tisane.desc">A calming loose-leaf blend to sip through cramps and low days — steeps in 5 minutes, tastes like a warm hug.</p>
+          <div class="ingredient-list" data-i18n="product.tisane.ingredients">Ginger · Chamomile · Cramp bark · Raspberry leaf</div>
           <div class="price-row">
             <span class="price">199 MAD</span>
-            <button class="add-btn" data-name="Warm Bloom Tisane" data-price="199">Add to cart</button>
+            <button class="add-btn" data-pid="tisane" data-price="199" data-i18n="addBtn">Add to cart</button>
           </div>
         </div>
       </div>
@@ -542,13 +613,13 @@
           <img src="https://i.ibb.co/twBzpZMn/watermarked-img-4860142567752870730.jpg" alt="Relief Roll-On bottle">
         </div>
         <div class="product-body">
-          <span class="product-tag">Oil Roller</span>
-          <h3>Relief Roll-On</h3>
-          <p class="desc">A pocket-sized essential oil roller for fast, on-the-spot relief — roll onto the lower abdomen and back.</p>
-          <div class="ingredient-list">Clary sage · Lavender · Marjoram · Jojoba base</div>
+          <span class="product-tag" data-i18n="product.roller.tag">Oil Roller</span>
+          <h3 data-i18n="product.roller.name">Relief Roll-On</h3>
+          <p class="desc" data-i18n="product.roller.desc">A pocket-sized essential oil roller for fast, on-the-spot relief — roll onto the lower abdomen and back.</p>
+          <div class="ingredient-list" data-i18n="product.roller.ingredients">Clary sage · Lavender · Marjoram · Jojoba base</div>
           <div class="price-row">
             <span class="price">149 MAD</span>
-            <button class="add-btn" data-name="Relief Roll-On" data-price="149">Add to cart</button>
+            <button class="add-btn" data-pid="roller" data-price="149" data-i18n="addBtn">Add to cart</button>
           </div>
         </div>
       </div>
@@ -558,13 +629,13 @@
           <img src="https://i.ibb.co/hbcyZ95/watermarked-img-2375900267776275014.jpg" alt="Daily Balance Capsules bottle">
         </div>
         <div class="product-body">
-          <span class="product-tag">Supplement</span>
-          <h3>Daily Balance Capsules</h3>
-          <p class="desc">A monthly herbal supplement to support hormonal balance and reduce cramp intensity over time.</p>
-          <div class="ingredient-list">Evening primrose · Magnesium · Vitex · Turmeric</div>
+          <span class="product-tag" data-i18n="product.capsules.tag">Supplement</span>
+          <h3 data-i18n="product.capsules.name">Daily Balance Capsules</h3>
+          <p class="desc" data-i18n="product.capsules.desc">A monthly herbal supplement to support hormonal balance and reduce cramp intensity over time.</p>
+          <div class="ingredient-list" data-i18n="product.capsules.ingredients">Evening primrose · Magnesium · Vitex · Turmeric</div>
           <div class="price-row">
             <span class="price">249 MAD</span>
-            <button class="add-btn" data-name="Daily Balance Capsules" data-price="249">Add to cart</button>
+            <button class="add-btn" data-pid="capsules" data-price="249" data-i18n="addBtn">Add to cart</button>
           </div>
         </div>
       </div>
@@ -575,24 +646,24 @@
 
 <section class="philosophy" id="philosophy">
   <div class="wrap">
-    <span class="eyebrow">Our philosophy</span>
-    <h2>Fast-acting relief doesn't have to mean synthetic.</h2>
+    <span class="eyebrow" data-i18n="philosophy.eyebrow">Our philosophy</span>
+    <h2 data-i18n="philosophy.title">Fast-acting relief doesn't have to mean synthetic.</h2>
     <div class="ingredient-grid">
       <div class="ingredient-item">
-        <h4>Ginger</h4>
-        <p>Reduces inflammation and eases cramping from the inside.</p>
+        <h4 data-i18n="ingredient.ginger.name">Ginger</h4>
+        <p data-i18n="ingredient.ginger.desc">Reduces inflammation and eases cramping from the inside.</p>
       </div>
       <div class="ingredient-item">
-        <h4>Clary Sage</h4>
-        <p>A traditional remedy for hormonal discomfort, used for centuries.</p>
+        <h4 data-i18n="ingredient.clarysage.name">Clary Sage</h4>
+        <p data-i18n="ingredient.clarysage.desc">A traditional remedy for hormonal discomfort, used for centuries.</p>
       </div>
       <div class="ingredient-item">
-        <h4>Cramp Bark</h4>
-        <p>A natural antispasmodic that helps muscles relax.</p>
+        <h4 data-i18n="ingredient.crampbark.name">Cramp Bark</h4>
+        <p data-i18n="ingredient.crampbark.desc">A natural antispasmodic that helps muscles relax.</p>
       </div>
       <div class="ingredient-item">
-        <h4>Magnesium</h4>
-        <p>Supports muscle function and can ease tension-related pain.</p>
+        <h4 data-i18n="ingredient.magnesium.name">Magnesium</h4>
+        <p data-i18n="ingredient.magnesium.desc">Supports muscle function and can ease tension-related pain.</p>
       </div>
     </div>
   </div>
@@ -601,25 +672,25 @@
 <section class="how" id="how">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">How it works</span>
-      <h2>Relief, delivered on your schedule</h2>
-      <p>Subscribe once, and we handle the rest — a predictable rhythm for a predictable body.</p>
+      <span class="eyebrow" data-i18n="how.eyebrow">How it works</span>
+      <h2 data-i18n="how.title">Relief, delivered on your schedule</h2>
+      <p data-i18n="how.desc">Subscribe once, and we handle the rest — a predictable rhythm for a predictable body.</p>
     </div>
     <div class="timeline">
       <div class="step">
         <div class="step-dot">1</div>
-        <h3>Choose your plan</h3>
-        <p>Pick your products and how often you'd like them — monthly or every two months.</p>
+        <h3 data-i18n="how.step1.title">Choose your plan</h3>
+        <p data-i18n="how.step1.desc">Pick your products and how often you'd like them — monthly or every two months.</p>
       </div>
       <div class="step">
         <div class="step-dot">2</div>
-        <h3>We blend & ship</h3>
-        <p>Freshly blended teas and oils, packed in eco-friendly materials, shipped across Morocco and the MENA region.</p>
+        <h3 data-i18n="how.step2.title">We blend & ship</h3>
+        <p data-i18n="how.step2.desc">Freshly blended teas and oils, packed in eco-friendly materials, shipped across Morocco and the MENA region.</p>
       </div>
       <div class="step">
         <div class="step-dot">3</div>
-        <h3>Feel the difference</h3>
-        <p>Use daily or as needed — most customers notice calmer cycles within 2–3 months.</p>
+        <h3 data-i18n="how.step3.title">Feel the difference</h3>
+        <p data-i18n="how.step3.desc">Use daily or as needed — most customers notice calmer cycles within 2–3 months.</p>
       </div>
     </div>
   </div>
@@ -628,23 +699,23 @@
 <section class="testimonials" id="reviews">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Reviews</span>
-      <h2>What our customers say</h2>
+      <span class="eyebrow" data-i18n="reviews.eyebrow">Reviews</span>
+      <h2 data-i18n="reviews.title">What our customers say</h2>
     </div>
     <div class="test-grid">
       <div class="test-card">
         <div class="stars">★★★★★</div>
-        <p>"The Relief Roll-On is now permanently in my bag. It's the first natural product that's actually worked for my cramps."</p>
+        <p data-i18n="reviews.test1">"The Relief Roll-On is now permanently in my bag. It's the first natural product that's actually worked for my cramps."</p>
         <div class="test-name">— Salma, Rabat</div>
       </div>
       <div class="test-card">
         <div class="stars">★★★★★</div>
-        <p>"I switched to the tea instead of painkillers and honestly don't miss them. The subscription makes it effortless."</p>
+        <p data-i18n="reviews.test2">"I switched to the tea instead of painkillers and honestly don't miss them. The subscription makes it effortless."</p>
         <div class="test-name">— Yasmine, Casablanca</div>
       </div>
       <div class="test-card">
         <div class="stars">★★★★☆</div>
-        <p>"Took a couple of cycles to notice the capsules working, but my cramps are noticeably shorter now."</p>
+        <p data-i18n="reviews.test3">"Took a couple of cycles to notice the capsules working, but my cramps are noticeably shorter now."</p>
         <div class="test-name">— Imane, Marrakech</div>
       </div>
     </div>
@@ -653,35 +724,35 @@
 
 <section class="faq" id="faq">
   <div class="section-head">
-    <span class="eyebrow">FAQ</span>
-    <h2>Good to know</h2>
+    <span class="eyebrow" data-i18n="faq.eyebrow">FAQ</span>
+    <h2 data-i18n="faq.title">Good to know</h2>
   </div>
 
   <div class="faq-item">
-    <div class="faq-q"><span>Are the ingredients safe to use every month?</span><span class="plus">+</span></div>
-    <div class="faq-a"><p>Yes — all our blends use food-grade and cosmetic-grade natural ingredients meant for regular, cyclical use. If you're pregnant, breastfeeding, or on medication, check with your doctor first.</p></div>
+    <div class="faq-q"><span data-i18n="faq.q1">Are the ingredients safe to use every month?</span><span class="plus">+</span></div>
+    <div class="faq-a"><p data-i18n="faq.a1">Yes — all our blends use food-grade and cosmetic-grade natural ingredients meant for regular, cyclical use. If you're pregnant, breastfeeding, or on medication, check with your doctor first.</p></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q"><span>Where do you ship?</span><span class="plus">+</span></div>
-    <div class="faq-a"><p>We currently ship across Morocco, with expansion underway to other MENA countries. Retail partners include select pharmacies and health stores.</p></div>
+    <div class="faq-q"><span data-i18n="faq.q2">Where do you ship?</span><span class="plus">+</span></div>
+    <div class="faq-a"><p data-i18n="faq.a2">We currently ship across Morocco, with expansion underway to other MENA countries. Retail partners include select pharmacies and health stores.</p></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q"><span>Can I cancel my subscription anytime?</span><span class="plus">+</span></div>
-    <div class="faq-a"><p>Yes, subscriptions are flexible — pause, skip, or cancel a delivery whenever you like, no fees involved.</p></div>
+    <div class="faq-q"><span data-i18n="faq.q3">Can I cancel my subscription anytime?</span><span class="plus">+</span></div>
+    <div class="faq-a"><p data-i18n="faq.a3">Yes, subscriptions are flexible — pause, skip, or cancel a delivery whenever you like, no fees involved.</p></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q"><span>Will this replace my painkillers completely?</span><span class="plus">+</span></div>
-    <div class="faq-a"><p>For many customers, yes — but everyone's pain is different. If your period pain is severe or unusual, please speak with a doctor rather than relying on any single product.</p></div>
+    <div class="faq-q"><span data-i18n="faq.q4">Will this replace my painkillers completely?</span><span class="plus">+</span></div>
+    <div class="faq-a"><p data-i18n="faq.a4">For many customers, yes — but everyone's pain is different. If your period pain is severe or unusual, please speak with a doctor rather than relying on any single product.</p></div>
   </div>
 </section>
 
 <div class="newsletter">
   <div class="wrap">
-    <span class="eyebrow" style="color:var(--rose);">Stay in the loop</span>
-    <h2>Get cycle-care tips & early access to new blends</h2>
+    <span class="eyebrow" style="color:var(--rose);" data-i18n="newsletter.eyebrow">Stay in the loop</span>
+    <h2 data-i18n="newsletter.title">Get cycle-care tips & early access to new blends</h2>
     <form class="news-form" id="newsForm">
-      <input type="email" required placeholder="you@email.com" id="newsEmail">
-      <button type="submit">Subscribe</button>
+      <input type="email" required data-i18n-placeholder="newsletter.placeholder" placeholder="you@email.com" id="newsEmail">
+      <button type="submit" data-i18n="newsletter.button">Subscribe</button>
     </form>
     <div class="news-msg" id="newsMsg"></div>
   </div>
@@ -692,43 +763,328 @@
     <div class="footer-grid">
       <div>
         <div class="logo" style="margin-bottom:12px;"><span class="dot"></span>Calm &amp; Bloom</div>
-        <p style="color:var(--ink-soft); font-size:0.9rem; max-width:260px;">Natural menstrual relief, grown and blended in Morocco.</p>
+        <p style="color:var(--ink-soft); font-size:0.9rem; max-width:260px;" data-i18n="footer.tagline">Natural menstrual relief, grown and blended in Morocco.</p>
       </div>
       <div>
-        <h4>Shop</h4>
+        <h4 data-i18n="footer.shopHeading">Shop</h4>
         <ul>
-          <li><a href="#shop">Tea Blends</a></li>
-          <li><a href="#shop">Oil Rollers</a></li>
-          <li><a href="#shop">Supplements</a></li>
+          <li><a href="#shop" data-i18n="footer.teaBlends">Tea Blends</a></li>
+          <li><a href="#shop" data-i18n="footer.oilRollers">Oil Rollers</a></li>
+          <li><a href="#shop" data-i18n="footer.supplements">Supplements</a></li>
         </ul>
       </div>
       <div>
-        <h4>Company</h4>
+        <h4 data-i18n="footer.companyHeading">Company</h4>
         <ul>
-          <li><a href="#philosophy">Our philosophy</a></li>
-          <li><a href="#how">How it works</a></li>
-          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#philosophy" data-i18n="footer.ourPhilosophy">Our philosophy</a></li>
+          <li><a href="#how" data-i18n="footer.howItWorks">How it works</a></li>
+          <li><a href="#reviews" data-i18n="footer.reviewsLink">Reviews</a></li>
         </ul>
       </div>
       <div>
-        <h4>Support</h4>
+        <h4 data-i18n="footer.supportHeading">Support</h4>
         <ul>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Shipping</a></li>
+          <li><a href="#faq" data-i18n="footer.faqLink">FAQ</a></li>
+          <li><a href="#" data-i18n="footer.contact">Contact</a></li>
+          <li><a href="#" data-i18n="footer.shipping">Shipping</a></li>
         </ul>
       </div>
     </div>
-    <p class="disclaimer">These statements have not been evaluated by health authorities. Calm &amp; Bloom products are not intended to diagnose, treat, cure, or prevent any disease. If your menstrual pain is severe, persistent, or unusual, please consult a doctor.</p>
+    <p class="disclaimer" data-i18n="footer.disclaimer">These statements have not been evaluated by health authorities. Calm &amp; Bloom products are not intended to diagnose, treat, cure, or prevent any disease. If your menstrual pain is severe, persistent, or unusual, please consult a doctor.</p>
     <div class="bottom-line">
-      <span>© 2026 Calm & Bloom. All rights reserved.</span>
-      <span>Made with care in Morocco</span>
+      <span data-i18n="footer.copyright">© 2026 Calm & Bloom. All rights reserved.</span>
+      <span data-i18n="footer.madeWith">Made with care in Morocco</span>
     </div>
-    <div class="dev-credit">Designed and Developed by <a href="https://rihanio.com" target="_blank" rel="noopener">RIHANIO.COM</a> | All Rights Reserved © 2026</div>
+    <div class="dev-credit" data-i18n-html="footer.devCredit">Designed and Developed by <a href="https://rihanio.com" target="_blank" rel="noopener">RIHANIO.COM</a> | All Rights Reserved © 2026</div>
   </div>
 </footer>
 
 <script>
+  /* =========================================================
+     TRANSLATIONS
+  ========================================================= */
+  const translations = {
+    en: {
+      nav: { shop:"Shop", tracker:"Track cycle", philosophy:"Philosophy", how:"How it works", reviews:"Reviews", faq:"FAQ", shopNow:"Shop now" },
+      announceHtml: 'Free delivery across Morocco on orders over <b>350 MAD</b> · Formulated with women\'s health experts',
+      cart: { title:"Your cart", empty:"Your cart is empty — add something to feel better 🌸", total:"Total", checkout:"Checkout" },
+      hero: {
+        eyebrow:"Grown & blended in Morocco",
+        titleHtml:'Relief that moves <em>with</em> your cycle, not against it.',
+        lead:"Calm & Bloom makes plant-based teas, essential oil rollers, and herbal supplements formulated to ease period pain — no synthetic painkillers, no guesswork.",
+        ctaShop:"Shop the collection", ctaHow:"How it works",
+        note:"For women 15–45 seeking natural, chemical-free alternatives to pain relief."
+      },
+      cycle: { caption:"Formulated for every phase of your cycle", menstrual:"MENSTRUAL", follicular:"FOLLICULAR", ovulation:"OVULATION", luteal:"LUTEAL", textA:"in rhythm,", textB:"not in pain" },
+      trust: { 1:"plant-based formulations", 2:"synthetic additives or fillers", 3:"made in Morocco, shipping regionally" },
+      tracker: {
+        eyebrow:"Free tool", title:"Track your cycle, never get caught off guard",
+        desc:"Enter the first day of your last period and we'll estimate your next one — plus give you a heads-up before it arrives.",
+        labelDate:"First day of last period", labelCycle:"Average cycle length (days)", calc:"Calculate",
+        nextLabel:"Next expected period", daysLabel:"Days remaining",
+        note:"This is an estimate based on average cycle length, not a diagnosis. If you'd like a browser reminder as the date nears, allow notifications when prompted.",
+        today:"Today", oneDay:"1 day", daysSuffix:(n)=>`${n} days`,
+        alert:(daysText)=>`🔔 Reminder: your period is expected in ${daysText} — keep your relief kit close by.`
+      },
+      mission: {
+        visionEyebrow:"Vision", visionTitle:"Safe, natural solutions for period pain.",
+        visionText:"We believe managing menstrual pain shouldn't mean reaching for whatever's in the medicine cabinet. Calm & Bloom exists to give women a natural, effective option they can trust every month.",
+        chip1:"Women 15–45", chip2:"Wellness-focused", chip3:"Chemical-free",
+        missionEyebrow:"Mission", missionTitle:"Plant-based products, expertly crafted.",
+        missionText:"Every blend is designed to alleviate menstrual discomfort while supporting long-term wellness — sourced locally, tested carefully, and packaged with the planet in mind.",
+        chip4:"Locally sourced", chip5:"Eco-friendly packaging", chip6:"Fast-acting formulas"
+      },
+      products: { eyebrow:"The Collection", title:"Three ways to feel better, naturally", desc:"Each product is built around one job: easing period pain, gently and quickly." },
+      addBtn: "Add to cart", addedBtn: "Added ✓",
+      product: {
+        tisane: { tag:"Tea Blend", name:"Warm Bloom Tisane", desc:"A calming loose-leaf blend to sip through cramps and low days — steeps in 5 minutes, tastes like a warm hug.", ingredients:"Ginger · Chamomile · Cramp bark · Raspberry leaf" },
+        roller: { tag:"Oil Roller", name:"Relief Roll-On", desc:"A pocket-sized essential oil roller for fast, on-the-spot relief — roll onto the lower abdomen and back.", ingredients:"Clary sage · Lavender · Marjoram · Jojoba base" },
+        capsules: { tag:"Supplement", name:"Daily Balance Capsules", desc:"A monthly herbal supplement to support hormonal balance and reduce cramp intensity over time.", ingredients:"Evening primrose · Magnesium · Vitex · Turmeric" }
+      },
+      philosophy: { eyebrow:"Our philosophy", title:"Fast-acting relief doesn't have to mean synthetic." },
+      ingredient: {
+        ginger: { name:"Ginger", desc:"Reduces inflammation and eases cramping from the inside." },
+        clarysage: { name:"Clary Sage", desc:"A traditional remedy for hormonal discomfort, used for centuries." },
+        crampbark: { name:"Cramp Bark", desc:"A natural antispasmodic that helps muscles relax." },
+        magnesium: { name:"Magnesium", desc:"Supports muscle function and can ease tension-related pain." }
+      },
+      how: {
+        eyebrow:"How it works", title:"Relief, delivered on your schedule",
+        desc:"Subscribe once, and we handle the rest — a predictable rhythm for a predictable body.",
+        step1:{ title:"Choose your plan", desc:"Pick your products and how often you'd like them — monthly or every two months." },
+        step2:{ title:"We blend & ship", desc:"Freshly blended teas and oils, packed in eco-friendly materials, shipped across Morocco and the MENA region." },
+        step3:{ title:"Feel the difference", desc:"Use daily or as needed — most customers notice calmer cycles within 2–3 months." }
+      },
+      reviews: {
+        eyebrow:"Reviews", title:"What our customers say",
+        test1:'"The Relief Roll-On is now permanently in my bag. It\'s the first natural product that\'s actually worked for my cramps."',
+        test2:'"I switched to the tea instead of painkillers and honestly don\'t miss them. The subscription makes it effortless."',
+        test3:'"Took a couple of cycles to notice the capsules working, but my cramps are noticeably shorter now."'
+      },
+      faq: {
+        eyebrow:"FAQ", title:"Good to know",
+        q1:"Are the ingredients safe to use every month?", a1:"Yes — all our blends use food-grade and cosmetic-grade natural ingredients meant for regular, cyclical use. If you're pregnant, breastfeeding, or on medication, check with your doctor first.",
+        q2:"Where do you ship?", a2:"We currently ship across Morocco, with expansion underway to other MENA countries. Retail partners include select pharmacies and health stores.",
+        q3:"Can I cancel my subscription anytime?", a3:"Yes, subscriptions are flexible — pause, skip, or cancel a delivery whenever you like, no fees involved.",
+        q4:"Will this replace my painkillers completely?", a4:"For many customers, yes — but everyone's pain is different. If your period pain is severe or unusual, please speak with a doctor rather than relying on any single product."
+      },
+      newsletter: { eyebrow:"Stay in the loop", title:"Get cycle-care tips & early access to new blends", placeholder:"you@email.com", button:"Subscribe", success:"You're on the list — welcome to the bloom 🌸" },
+      footer: {
+        tagline:"Natural menstrual relief, grown and blended in Morocco.",
+        shopHeading:"Shop", teaBlends:"Tea Blends", oilRollers:"Oil Rollers", supplements:"Supplements",
+        companyHeading:"Company", ourPhilosophy:"Our philosophy", howItWorks:"How it works", reviewsLink:"Reviews",
+        supportHeading:"Support", faqLink:"FAQ", contact:"Contact", shipping:"Shipping",
+        disclaimer:"These statements have not been evaluated by health authorities. Calm & Bloom products are not intended to diagnose, treat, cure, or prevent any disease. If your menstrual pain is severe, persistent, or unusual, please consult a doctor.",
+        copyright:"© 2026 Calm & Bloom. All rights reserved.", madeWith:"Made with care in Morocco",
+        devCreditHtml:'Designed and Developed by <a href="https://rihanio.com" target="_blank" rel="noopener">RIHANIO.COM</a> | All Rights Reserved © 2026'
+      }
+    },
+    fr: {
+      nav: { shop:"Boutique", tracker:"Suivre le cycle", philosophy:"Philosophie", how:"Comment ça marche", reviews:"Avis", faq:"FAQ", shopNow:"Acheter" },
+      announceHtml: 'Livraison gratuite partout au Maroc dès <b>350 MAD</b> d\'achat · Formulé avec des expertes en santé féminine',
+      cart: { title:"Votre panier", empty:"Votre panier est vide — ajoutez de quoi vous sentir mieux 🌸", total:"Total", checkout:"Commander" },
+      hero: {
+        eyebrow:"Cultivé et préparé au Maroc",
+        titleHtml:'Un soulagement qui suit <em>le rythme</em> de votre cycle, pas contre lui.',
+        lead:"Calm & Bloom conçoit des tisanes, roll-on aux huiles essentielles et compléments à base de plantes pour soulager les douleurs menstruelles — sans antalgiques de synthèse, sans incertitude.",
+        ctaShop:"Découvrir la collection", ctaHow:"Comment ça marche",
+        note:"Pour les femmes de 15 à 45 ans en quête d'alternatives naturelles et sans produits chimiques contre la douleur."
+      },
+      cycle: { caption:"Formulé pour chaque phase de votre cycle", menstrual:"MENSTRUELLE", follicular:"FOLLICULAIRE", ovulation:"OVULATION", luteal:"LUTÉALE", textA:"en rythme,", textB:"sans douleur" },
+      trust: { 1:"formulations à base de plantes", 2:"additifs ou charges synthétiques", 3:"fabriqué au Maroc, livré dans toute la région" },
+      tracker: {
+        eyebrow:"Outil gratuit", title:"Suivez votre cycle, ne soyez plus jamais surprise",
+        desc:"Indiquez le premier jour de vos dernières règles et nous estimerons la prochaine date — avec une alerte avant son arrivée.",
+        labelDate:"1er jour des dernières règles", labelCycle:"Durée moyenne du cycle (jours)", calc:"Calculer",
+        nextLabel:"Prochaines règles estimées", daysLabel:"Jours restants",
+        note:"Ceci est une estimation basée sur la durée moyenne du cycle, pas un diagnostic. Pour un rappel dans le navigateur, autorisez les notifications lorsque demandé.",
+        today:"Aujourd'hui", oneDay:"1 jour", daysSuffix:(n)=>`${n} jours`,
+        alert:(daysText)=>`🔔 Rappel : vos règles sont attendues dans ${daysText} — gardez votre kit de soulagement à portée de main.`
+      },
+      mission: {
+        visionEyebrow:"Vision", visionTitle:"Des solutions naturelles et sûres contre les douleurs menstruelles.",
+        visionText:"Nous pensons que gérer les douleurs menstruelles ne devrait pas se limiter à ce qui traîne dans l'armoire à pharmacie. Calm & Bloom offre aux femmes une option naturelle et efficace en qui elles peuvent avoir confiance chaque mois.",
+        chip1:"Femmes 15–45 ans", chip2:"Axé bien-être", chip3:"Sans produits chimiques",
+        missionEyebrow:"Mission", missionTitle:"Des produits à base de plantes, conçus avec expertise.",
+        missionText:"Chaque mélange est conçu pour soulager l'inconfort menstruel tout en soutenant le bien-être à long terme — sourcé localement, testé avec soin, emballé en pensant à la planète.",
+        chip4:"Approvisionnement local", chip5:"Emballage écoresponsable", chip6:"Formules à action rapide"
+      },
+      products: { eyebrow:"La Collection", title:"Trois façons de se sentir mieux, naturellement", desc:"Chaque produit répond à un seul objectif : soulager les douleurs menstruelles, en douceur et rapidement." },
+      addBtn: "Ajouter au panier", addedBtn: "Ajouté ✓",
+      product: {
+        tisane: { tag:"Tisane", name:"Tisane Warm Bloom", desc:"Un mélange apaisant en feuilles à siroter pendant les crampes et les jours difficiles — infuse en 5 minutes, comme un câlin chaud.", ingredients:"Gingembre · Camomille · Viorne obier · Feuille de framboisier" },
+        roller: { tag:"Roll-on", name:"Roll-on Relief", desc:"Un roll-on aux huiles essentielles au format poche pour un soulagement rapide et ciblé — à appliquer sur le bas-ventre et le dos.", ingredients:"Sauge sclarée · Lavande · Marjolaine · Base de jojoba" },
+        capsules: { tag:"Complément", name:"Gélules Daily Balance", desc:"Un complément aux plantes à prendre chaque mois pour soutenir l'équilibre hormonal et réduire l'intensité des crampes dans le temps.", ingredients:"Onagre · Magnésium · Gattilier · Curcuma" }
+      },
+      philosophy: { eyebrow:"Notre philosophie", title:"Un soulagement rapide ne veut pas dire synthétique." },
+      ingredient: {
+        ginger: { name:"Gingembre", desc:"Réduit l'inflammation et apaise les crampes de l'intérieur." },
+        clarysage: { name:"Sauge sclarée", desc:"Un remède traditionnel contre l'inconfort hormonal, utilisé depuis des siècles." },
+        crampbark: { name:"Viorne obier", desc:"Un antispasmodique naturel qui aide les muscles à se détendre." },
+        magnesium: { name:"Magnésium", desc:"Soutient la fonction musculaire et peut soulager les douleurs liées aux tensions." }
+      },
+      how: {
+        eyebrow:"Comment ça marche", title:"Un soulagement livré selon votre rythme",
+        desc:"Abonnez-vous une fois, on s'occupe du reste — un rythme prévisible pour un corps prévisible.",
+        step1:{ title:"Choisissez votre formule", desc:"Sélectionnez vos produits et leur fréquence — mensuelle ou tous les deux mois." },
+        step2:{ title:"On prépare & on expédie", desc:"Tisanes et huiles fraîchement préparées, emballées dans des matériaux écoresponsables, livrées partout au Maroc et dans la région MENA." },
+        step3:{ title:"Ressentez la différence", desc:"À utiliser quotidiennement ou au besoin — la plupart des clientes remarquent des cycles plus calmes en 2 à 3 mois." }
+      },
+      reviews: {
+        eyebrow:"Avis", title:"Ce que disent nos clientes",
+        test1:'« Le Roll-on Relief ne quitte plus mon sac. C\'est le premier produit naturel qui a vraiment fonctionné pour mes crampes. »',
+        test2:'« J\'ai remplacé les antalgiques par la tisane et je ne les regrette pas du tout. L\'abonnement rend tout facile. »',
+        test3:'« Il a fallu quelques cycles pour sentir l\'effet des gélules, mais mes crampes sont nettement plus courtes maintenant. »'
+      },
+      faq: {
+        eyebrow:"FAQ", title:"Bon à savoir",
+        q1:"Les ingrédients sont-ils sûrs à utiliser chaque mois ?", a1:"Oui — tous nos mélanges utilisent des ingrédients naturels de qualité alimentaire et cosmétique, conçus pour un usage cyclique régulier. Si vous êtes enceinte, allaitez ou suivez un traitement, consultez d'abord votre médecin.",
+        q2:"Où livrez-vous ?", a2:"Nous livrons actuellement partout au Maroc, avec une expansion en cours vers d'autres pays de la région MENA. Nos partenaires incluent certaines pharmacies et magasins bio.",
+        q3:"Puis-je annuler mon abonnement à tout moment ?", a3:"Oui, les abonnements sont flexibles — mettez en pause, sautez ou annulez une livraison quand vous le souhaitez, sans frais.",
+        q4:"Cela remplacera-t-il complètement mes antalgiques ?", a4:"Pour beaucoup de clientes, oui — mais chaque douleur est différente. Si vos douleurs menstruelles sont sévères ou inhabituelles, consultez un médecin plutôt que de vous fier à un seul produit."
+      },
+      newsletter: { eyebrow:"Restez informée", title:"Recevez des conseils cycle et un accès anticipé aux nouveautés", placeholder:"vous@email.com", button:"S'abonner", success:"C'est fait — bienvenue dans le bloom 🌸" },
+      footer: {
+        tagline:"Soulagement menstruel naturel, cultivé et préparé au Maroc.",
+        shopHeading:"Boutique", teaBlends:"Tisanes", oilRollers:"Roll-on", supplements:"Compléments",
+        companyHeading:"Entreprise", ourPhilosophy:"Notre philosophie", howItWorks:"Comment ça marche", reviewsLink:"Avis",
+        supportHeading:"Aide", faqLink:"FAQ", contact:"Contact", shipping:"Livraison",
+        disclaimer:"Ces informations n'ont pas été évaluées par les autorités de santé. Les produits Calm & Bloom ne sont pas destinés à diagnostiquer, traiter, guérir ou prévenir une maladie. Si vos douleurs menstruelles sont sévères, persistantes ou inhabituelles, consultez un médecin.",
+        copyright:"© 2026 Calm & Bloom. Tous droits réservés.", madeWith:"Fait avec soin au Maroc",
+        devCreditHtml:'Conçu et développé par <a href="https://rihanio.com" target="_blank" rel="noopener">RIHANIO.COM</a> | Tous droits réservés © 2026'
+      }
+    },
+    ar: {
+      nav: { shop:"المتجر", tracker:"تتبع الدورة", philosophy:"فلسفتنا", how:"كيف تعمل", reviews:"آراء العميلات", faq:"الأسئلة الشائعة", shopNow:"تسوقي الآن" },
+      announceHtml: 'توصيل مجاني في جميع أنحاء المغرب للطلبات فوق <b>350 درهم</b> · بتركيبة أعدتها خبيرات في صحة المرأة',
+      cart: { title:"سلة التسوق", empty:"سلة التسوق فارغة — أضيفي شيئاً يشعرك بتحسن 🌸", total:"المجموع", checkout:"إتمام الطلب" },
+      hero: {
+        eyebrow:"مزروع ومُعدّ في المغرب",
+        titleHtml:'راحة تواكب <em>إيقاع</em> دورتك، لا تقاومها.',
+        lead:"تقدم Calm & Bloom شايًا عشبيًا ورول-أون بالزيوت الأساسية ومكملات عشبية مصمَّمة لتخفيف آلام الدورة الشهرية — بدون مسكنات كيميائية وبدون تخمين.",
+        ctaShop:"تسوقي المجموعة", ctaHow:"كيف تعمل",
+        note:"للنساء بين 15 و45 عامًا الباحثات عن بدائل طبيعية وخالية من المواد الكيميائية لتخفيف الألم."
+      },
+      cycle: { caption:"تركيبة مصممة لكل مرحلة من دورتك", menstrual:"الحيض", follicular:"الجريبية", ovulation:"التبويض", luteal:"الجسم الأصفر", textA:"في إيقاع،", textB:"بلا ألم" },
+      trust: { 1:"تركيبات نباتية بنسبة 100%", 2:"مواد أو حشوات كيميائية اصطناعية", 3:"صُنع في المغرب، يُشحن إلى المنطقة" },
+      tracker: {
+        eyebrow:"أداة مجانية", title:"تتبعي دورتك، ولن تُفاجئي بعد اليوم",
+        desc:"أدخلي اليوم الأول من آخر دورة لك وسنقدّر موعد الدورة القادمة — مع تنبيه قبل وصولها.",
+        labelDate:"اليوم الأول من آخر دورة", labelCycle:"متوسط طول الدورة (بالأيام)", calc:"احسبي",
+        nextLabel:"موعد الدورة القادمة المتوقع", daysLabel:"الأيام المتبقية",
+        note:"هذا تقدير مبني على متوسط طول الدورة وليس تشخيصاً طبياً. إذا رغبتِ في تذكير عبر المتصفح عند اقتراب الموعد، اسمحي بالإشعارات عند الطلب.",
+        today:"اليوم", oneDay:"يوم واحد", daysSuffix:(n)=>`${n} أيام`,
+        alert:(daysText)=>`🔔 تذكير: من المتوقع أن تبدأ دورتك خلال ${daysText} — احتفظي بمجموعة الراحة الخاصة بك في المتناول.`
+      },
+      mission: {
+        visionEyebrow:"رؤيتنا", visionTitle:"حلول طبيعية وآمنة لآلام الدورة الشهرية.",
+        visionText:"نؤمن بأن التعامل مع آلام الدورة الشهرية لا يجب أن يقتصر على ما يوجد في خزانة الأدوية. توجد Calm & Bloom لتمنح النساء خيارًا طبيعيًا وفعالًا يمكن الوثوق به كل شهر.",
+        chip1:"النساء 15–45 سنة", chip2:"مُركّزة على العافية", chip3:"خالية من المواد الكيميائية",
+        missionEyebrow:"مهمتنا", missionTitle:"منتجات نباتية مُعدّة باحترافية.",
+        missionText:"كل تركيبة مصممة لتخفيف انزعاج الدورة الشهرية مع دعم العافية على المدى الطويل — مصادر محلية، اختبار دقيق، وتغليف يراعي البيئة.",
+        chip4:"مصادر محلية", chip5:"تغليف صديق للبيئة", chip6:"تركيبات سريعة المفعول"
+      },
+      products: { eyebrow:"المجموعة", title:"ثلاث طرق للشعور بتحسن، بشكل طبيعي", desc:"كل منتج مصمم لهدف واحد: تخفيف ألم الدورة الشهرية، بلطف وبسرعة." },
+      addBtn: "أضيفي إلى السلة", addedBtn: "أُضيف ✓",
+      product: {
+        tisane: { tag:"مزيج شاي", name:"شاي وارم بلوم", desc:"مزيج أعشاب مهدئ تحتسينه خلال التقلصات والأيام الصعبة — ينقع خلال 5 دقائق، كأنه احتضان دافئ.", ingredients:"زنجبيل · بابونج · لحاء القرنفلي · أوراق التوت الشوكي" },
+        roller: { tag:"رول-أون بالزيوت", name:"رول-أون ريليف", desc:"رول-أون بالزيوت الأساسية بحجم الجيب لراحة سريعة وموضعية — يُمرَّر على أسفل البطن والظهر.", ingredients:"مريمية مُقدسة · لافندر · مردقوش · قاعدة الجوجوبا" },
+        capsules: { tag:"مكمل غذائي", name:"كبسولات ديلي بالانس", desc:"مكمل عشبي شهري يدعم التوازن الهرموني ويقلل من شدة التقلصات مع الوقت.", ingredients:"زهرة الربيع المسائية · مغنيسيوم · فيتكس · كركم" }
+      },
+      philosophy: { eyebrow:"فلسفتنا", title:"الراحة السريعة لا تعني بالضرورة مواداً اصطناعية." },
+      ingredient: {
+        ginger: { name:"الزنجبيل", desc:"يقلل الالتهاب ويخفف التقلصات من الداخل." },
+        clarysage: { name:"المريمية المقدسة", desc:"علاج تقليدي لانزعاج الهرمونات، استُخدم منذ قرون." },
+        crampbark: { name:"لحاء القرنفلي", desc:"مضاد طبيعي للتشنج يساعد العضلات على الاسترخاء." },
+        magnesium: { name:"المغنيسيوم", desc:"يدعم وظيفة العضلات ويمكن أن يخفف الألم المرتبط بالتوتر." }
+      },
+      how: {
+        eyebrow:"كيف تعمل", title:"راحة تصل حسب جدولك",
+        desc:"اشتركي مرة واحدة، ونحن نتكفل بالباقي — إيقاع منتظم لجسم منتظم.",
+        step1:{ title:"اختاري خطتك", desc:"اختاري منتجاتك ووتيرة استلامها — شهرياً أو كل شهرين." },
+        step2:{ title:"نُعدّ ونشحن", desc:"شاي وزيوت طازجة، مُعبأة بمواد صديقة للبيئة، تُشحن إلى جميع أنحاء المغرب ومنطقة الشرق الأوسط وشمال إفريقيا." },
+        step3:{ title:"اشعري بالفرق", desc:"استخدميها يومياً أو عند الحاجة — تلاحظ معظم العميلات دورات أهدأ خلال 2 إلى 3 أشهر." }
+      },
+      reviews: {
+        eyebrow:"آراء العميلات", title:"ماذا تقول عميلاتنا",
+        test1:'"أصبح رول-أون ريليف رفيقاً دائماً في حقيبتي. إنه أول منتج طبيعي ينجح فعلاً مع تقلصاتي."',
+        test2:'"استبدلت المسكنات بالشاي ولا أفتقدها إطلاقاً. الاشتراك يجعل الأمر سهلاً بلا مجهود."',
+        test3:'"استغرق الأمر بضع دورات لأشعر بمفعول الكبسولات، لكن تقلصاتي أصبحت أقصر بشكل ملحوظ الآن."'
+      },
+      faq: {
+        eyebrow:"الأسئلة الشائعة", title:"جيد أن تعرفي",
+        q1:"هل المكونات آمنة للاستخدام كل شهر؟", a1:"نعم — جميع تركيباتنا تستخدم مكونات طبيعية بجودة غذائية وتجميلية مخصصة للاستخدام المنتظم والدوري. إذا كنتِ حاملاً أو مرضعة أو تتناولين دواءً، استشيري طبيبك أولاً.",
+        q2:"إلى أين تشحنون؟", a2:"نشحن حالياً في جميع أنحاء المغرب، مع توسع جارٍ نحو دول أخرى في منطقة الشرق الأوسط وشمال إفريقيا. من بين شركائنا صيدليات ومتاجر صحية مختارة.",
+        q3:"هل يمكنني إلغاء اشتراكي في أي وقت؟", a3:"نعم، الاشتراكات مرنة — يمكنك إيقاف أو تخطي أو إلغاء أي توصيل متى شئتِ، دون أي رسوم.",
+        q4:"هل سيحل هذا محل المسكنات تماماً؟", a4:"بالنسبة للكثير من العميلات، نعم — لكن كل ألم يختلف عن الآخر. إذا كان ألم دورتك شديداً أو غير معتاد، يُرجى استشارة طبيب بدل الاعتماد على منتج واحد فقط."
+      },
+      newsletter: { eyebrow:"ابقي على اطلاع", title:"احصلي على نصائح العناية بالدورة ووصول مبكر للمنتجات الجديدة", placeholder:"بريدك@الإلكتروني.com", button:"اشتركي", success:"تم تسجيلك بنجاح — مرحباً بك في عائلة Bloom 🌸" },
+      footer: {
+        tagline:"راحة طبيعية من آلام الدورة الشهرية، مزروعة ومُعدّة في المغرب.",
+        shopHeading:"المتجر", teaBlends:"مزيجات الشاي", oilRollers:"رول-أون الزيوت", supplements:"المكملات",
+        companyHeading:"الشركة", ourPhilosophy:"فلسفتنا", howItWorks:"كيف تعمل", reviewsLink:"آراء العميلات",
+        supportHeading:"الدعم", faqLink:"الأسئلة الشائعة", contact:"تواصلي معنا", shipping:"الشحن",
+        disclaimer:"لم يتم تقييم هذه المعلومات من قبل الجهات الصحية. منتجات Calm & Bloom غير مخصصة لتشخيص أو علاج أو شفاء أو الوقاية من أي مرض. إذا كان ألم دورتك الشهرية شديداً أو مستمراً أو غير معتاد، يُرجى استشارة طبيب.",
+        copyright:"© 2026 Calm & Bloom. جميع الحقوق محفوظة.", madeWith:"صُنع بعناية في المغرب",
+        devCreditHtml:'تصميم وتطوير <a href="https://rihanio.com" target="_blank" rel="noopener">RIHANIO.COM</a> | جميع الحقوق محفوظة © 2026'
+      }
+    }
+  };
+
+  function getPath(obj, path){
+    return path.split('.').reduce((o,k) => (o && o[k] !== undefined) ? o[k] : undefined, obj);
+  }
+  let currentLang = localStorage.getItem('cb_lang') || 'en';
+  function t(path, ...args){
+    let val = getPath(translations[currentLang], path);
+    if(val === undefined) val = getPath(translations.en, path);
+    if(typeof val === 'function') return val(...args);
+    return val !== undefined ? val : path;
+  }
+
+  function applyI18n(){
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const val = t(el.getAttribute('data-i18n'));
+      if(typeof val === 'string') el.textContent = val;
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const val = t(el.getAttribute('data-i18n-placeholder'));
+      if(typeof val === 'string') el.setAttribute('placeholder', val);
+    });
+    // HTML-bearing fields (contain inline tags like <em>/<b>/<a>)
+    document.querySelector('.announce').innerHTML = t('announceHtml');
+    document.querySelector('.hero h1').innerHTML = t('hero.titleHtml');
+    document.querySelector('.dev-credit').innerHTML = t('footer.devCreditHtml');
+
+    // svg cycle labels
+    document.getElementById('phaseMenstrual').textContent = t('cycle.menstrual');
+    document.getElementById('phaseFollicular').textContent = t('cycle.follicular');
+    document.getElementById('phaseOvulation').textContent = t('cycle.ovulation');
+    document.getElementById('phaseLuteal').textContent = t('cycle.luteal');
+    document.getElementById('cycleTextA').textContent = t('cycle.textA');
+    document.getElementById('cycleTextB').textContent = t('cycle.textB');
+
+    document.title = currentLang === 'ar' ? 'Calm & Bloom — راحة طبيعية من آلام الدورة' : (currentLang === 'fr' ? 'Calm & Bloom — Soulagement menstruel naturel' : 'Calm & Bloom — Natural Menstrual Relief');
+
+    renderCart();
+  }
+
+  function setLang(lang){
+    currentLang = lang;
+    localStorage.setItem('cb_lang', lang);
+    const html = document.getElementById('htmlRoot');
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    applyI18n();
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  });
+
   // header scroll shadow
   const siteHeader = document.querySelector('header');
   const onScroll = () => siteHeader.classList.toggle('scrolled', window.scrollY > 8);
@@ -754,8 +1110,8 @@
   navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMenu(); });
 
-  // cart
-  let cart = []; // { name, price, qty }
+  // cart  (items stored as {pid, price, qty} — language-neutral, name resolved at render time)
+  let cart = [];
   const cartCountEl = document.getElementById('cartCount');
   const cartItemsEl = document.getElementById('cartItems');
   const cartTotalEl = document.getElementById('cartTotal');
@@ -763,7 +1119,6 @@
   const cartPanel = document.getElementById('cartPanel');
   const cartClose = document.getElementById('cartClose');
 
-  // overlay (created once, sits behind the floating panel so a click outside closes it)
   const cartOverlay = document.createElement('div');
   cartOverlay.className = 'cart-overlay';
   document.body.appendChild(cartOverlay);
@@ -782,6 +1137,11 @@
     cartPanel.classList.contains('open') ? closeCart() : openCart();
   }
 
+  function productName(pid){
+    const val = t('product.' + pid + '.name');
+    return typeof val === 'string' ? val : pid;
+  }
+
   function renderCart(){
     const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
     const totalPrice = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
@@ -790,15 +1150,15 @@
     document.getElementById('cartCheckout').toggleAttribute('disabled', cart.length === 0);
 
     if(cart.length === 0){
-      cartItemsEl.innerHTML = '<div class="cart-empty">Your cart is empty — add something to feel better 🌸</div>';
+      cartItemsEl.innerHTML = `<div class="cart-empty">${t('cart.empty')}</div>`;
       return;
     }
 
     cartItemsEl.innerHTML = cart.map((item, i) => `
       <div class="cart-item">
         <div>
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-meta">${item.price} MAD each</div>
+          <div class="cart-item-name">${productName(item.pid)}</div>
+          <div class="cart-item-meta">${item.price} MAD</div>
         </div>
         <div class="cart-item-right">
           <button class="cart-qty-btn" data-action="dec" data-index="${i}" aria-label="Decrease quantity">−</button>
@@ -812,16 +1172,17 @@
 
   document.querySelectorAll('.add-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const name = btn.dataset.name;
+      const pid = btn.dataset.pid;
       const price = parseFloat(btn.dataset.price) || 0;
-      const existing = cart.find(item => item.name === name);
-      if(existing){ existing.qty++; } else { cart.push({ name, price, qty:1 }); }
+      const existing = cart.find(item => item.pid === pid);
+      if(existing){ existing.qty++; } else { cart.push({ pid, price, qty:1 }); }
       renderCart();
       openCart();
 
-      btn.textContent = 'Added ✓';
+      const originalLabel = t('addBtn');
+      btn.textContent = t('addedBtn');
       btn.classList.add('added');
-      setTimeout(() => { btn.textContent = 'Add to cart'; btn.classList.remove('added'); }, 1400);
+      setTimeout(() => { btn.textContent = t('addBtn'); btn.classList.remove('added'); }, 1400);
     });
   });
 
@@ -847,8 +1208,6 @@
     const payload = encodeURIComponent(JSON.stringify(cart));
     window.location.href = `checkout.html?items=${payload}`;
   });
-
-  renderCart();
 
   // faq accordion
   document.querySelectorAll('.faq-item').forEach(item => {
@@ -879,16 +1238,17 @@
 
     const msPerDay = 1000 * 60 * 60 * 24;
     const daysLeft = Math.round((nextDate - today) / msPerDay);
-    const dateFmt = nextDate.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+    const localeMap = { en:'en-GB', fr:'fr-FR', ar:'ar-MA' };
+    const dateFmt = nextDate.toLocaleDateString(localeMap[currentLang] || 'en-GB', { day:'numeric', month:'long', year:'numeric' });
 
     document.getElementById('nextDateOut').textContent = dateFmt;
-    document.getElementById('daysLeftOut').textContent = daysLeft === 0 ? 'Today' : (daysLeft === 1 ? '1 day' : `${daysLeft} days`);
+    document.getElementById('daysLeftOut').textContent = daysLeft === 0 ? t('tracker.today') : (daysLeft === 1 ? t('tracker.oneDay') : t('tracker.daysSuffix', daysLeft));
     document.getElementById('trackerResult').hidden = false;
 
     const alertBox = document.getElementById('trackerAlert');
     if(daysLeft <= 3){
-      const daysText = daysLeft === 0 ? 'today' : (daysLeft === 1 ? '1 day' : `${daysLeft} days`);
-      const msg = `🔔 Reminder: your period is expected in ${daysText} — keep your relief kit close by.`;
+      const daysText = daysLeft === 0 ? t('tracker.today') : (daysLeft === 1 ? t('tracker.oneDay') : t('tracker.daysSuffix', daysLeft));
+      const msg = t('tracker.alert', daysText);
       alertBox.textContent = msg;
       alertBox.hidden = false;
 
@@ -909,9 +1269,12 @@
   // newsletter
   document.getElementById('newsForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    document.getElementById('newsMsg').textContent = "You're on the list — welcome to the bloom 🌸";
+    document.getElementById('newsMsg').textContent = t('newsletter.success');
     document.getElementById('newsEmail').value = '';
   });
+
+  // init
+  setLang(currentLang);
 </script>
 
 </body>
